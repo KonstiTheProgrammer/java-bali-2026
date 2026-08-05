@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Was sich auf Java und Bali wirklich lohnt, was man weglässt, und sieben Momente für zwei.">
+<title>Nur das, was bleibt · Java & Bali für zwei</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { max-width: 100%; height: auto; }
+  h1, h2, h3, h4, p, ol, ul, table, figure { margin: 0; }
+  table { border-collapse: collapse; }
+  .sitenav {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --ground:   #E8E7EF;
+    --surface:  #F3F2F8;
+    --sunken:   #DBDAE6;
+    --ink:      #1A1B33;
+    --ink-soft: #53557A;
+    --ink-faint:#8385A3;
+    --rule:     #C4C3D6;
+    --rule-soft:#D5D4E2;
+    --gold:     #85670F;
+    --gold-line:#C9A227;
+    --rose:     #94374F;
+
+    --display: Didot, "Bodoni 72", "Playfair Display", "Times New Roman", serif;
+    --body: Optima, "Gill Sans", "Gill Sans MT", Avenir, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, "SF Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:   #14152A;
+      --surface:  #1D1F3A;
+      --sunken:   #0D0E1E;
+      --ink:      #E7E5F0;
+      --ink-soft: #A3A3C4;
+      --ink-faint:#73749A;
+      --rule:     #2F3157;
+      --rule-soft:#232544;
+      --gold:     #DCB74E;
+      --gold-line:#DCB74E;
+      --rose:     #DE8098;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:   #14152A;
+    --surface:  #1D1F3A;
+    --sunken:   #0D0E1E;
+    --ink:      #E7E5F0;
+    --ink-soft: #A3A3C4;
+    --ink-faint:#73749A;
+    --rule:     #2F3157;
+    --rule-soft:#232544;
+    --gold:     #DCB74E;
+    --gold-line:#DCB74E;
+    --rose:     #DE8098;
+  }
+  :root[data-theme="light"] {
+    --ground:   #E8E7EF;
+    --surface:  #F3F2F8;
+    --sunken:   #DBDAE6;
+    --ink:      #1A1B33;
+    --ink-soft: #53557A;
+    --ink-faint:#8385A3;
+    --rule:     #C4C3D6;
+    --rule-soft:#D5D4E2;
+    --gold:     #85670F;
+    --gold-line:#C9A227;
+    --rose:     #94374F;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17.5px;
+    line-height: 1.66;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px 100px; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { padding: 64px 0 30px; }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(42px, 8vw, 76px);
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin: 18px 0 0;
+    text-wrap: balance;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .standfirst {
+    margin: 22px 0 0;
+    max-width: 56ch;
+    font-size: 19px;
+    color: var(--ink-soft);
+  }
+  .rule-gold { height: 1px; background: var(--gold-line); opacity: 0.55; margin-top: 34px; }
+
+  /* ---------- sections ---------- */
+
+  section { padding-top: 66px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(28px, 5vw, 38px);
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  h2 + .lede { margin-top: 12px; }
+  .lede { color: var(--ink-soft); max-width: 60ch; margin: 0 0 34px; }
+  .sec-mark {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  /* ---------- keepers ---------- */
+
+  .keep { border-top: 1px solid var(--rule); }
+  .item { padding: 30px 0; border-bottom: 1px solid var(--rule-soft); }
+  .item-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 16px;
+    margin-bottom: 10px;
+  }
+  .item-name {
+    font-family: var(--display);
+    font-size: clamp(23px, 3.6vw, 29px);
+    line-height: 1.2;
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 60%;
+  }
+  .item-where {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .costs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .cost {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+  }
+  .cost.wecker { border-color: var(--gold-line); color: var(--gold); }
+  .cost.geld   { border-color: var(--rose); color: var(--rose); }
+  .item p { margin: 0; max-width: 66ch; color: var(--ink-soft); }
+  .item p + p { margin-top: 12px; }
+  .item p strong { color: var(--ink); font-weight: 600; }
+  .how {
+    margin-top: 14px;
+    padding-left: 16px;
+    border-left: 2px solid var(--gold-line);
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .how b {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 3px;
+    font-weight: 400;
+  }
+
+  /* ---------- skips ---------- */
+
+  .skip { border-top: 1px solid var(--rule); }
+  .skip-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 240px) 1fr;
+    gap: 4px 24px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .skip-name {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--ink-faint);
+  }
+  .skip-why { color: var(--ink-soft); font-size: 16px; }
+  .skip-why em { color: var(--ink); font-style: normal; font-weight: 600; }
+  @media (max-width: 560px) {
+    .skip-row { grid-template-columns: 1fr; gap: 2px; }
+  }
+
+  /* ---------- moments ---------- */
+
+  .moments { border-top: 1px solid var(--rule); }
+  .moment {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 6px 26px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .moment-when {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    color: var(--gold);
+    line-height: 1.5;
+    padding-top: 6px;
+  }
+  .moment-when span { display: block; color: var(--ink-faint); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .moment-title { font-family: var(--display); font-size: 22px; margin: 0 0 8px; line-height: 1.25; }
+  .moment p { margin: 0; color: var(--ink-soft); max-width: 62ch; }
+  @media (max-width: 560px) {
+    .moment { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  /* ---------- swap ---------- */
+
+  .swap {
+    background: var(--surface);
+    padding: 28px 30px;
+    border-top: 2px solid var(--gold-line);
+  }
+  .swap h3 { font-family: var(--display); font-size: 25px; margin: 0 0 12px; font-weight: 400; }
+  .swap p { margin: 0; color: var(--ink-soft); max-width: 62ch; }
+  .swap p + p { margin-top: 12px; }
+  .swap-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px; margin-top: 22px; }
+  .swap-col h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+    font-weight: 400;
+    color: var(--ink-faint);
+  }
+  .swap-col.new h4 { color: var(--gold); }
+  .swap-col ol { margin: 0; padding-left: 18px; font-size: 15.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .swap-col li { margin-bottom: 4px; }
+  .swap-col.new li { color: var(--ink); }
+
+  /* ---------- rules of thumb ---------- */
+
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 34px 44px; border-top: 1px solid var(--rule); padding-top: 32px; }
+  .rule-item h3 { font-family: var(--display); font-size: 22px; font-weight: 400; margin: 0 0 8px; line-height: 1.25; }
+  .rule-item p { margin: 0; color: var(--ink-soft); font-size: 16px; }
+
+  footer {
+    margin-top: 78px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    line-height: 1.85;
+  }
+
+  a { color: var(--rose); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--gold-line); outline-offset: 3px; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="kicker">Beiblatt zum Reiseplan · September 2026</span>
+    <h1>Nur das,<br>was <em>bleibt</em></h1>
+    <p class="standfirst">Achtzehn Tage sind viel — bis man anfängt, sie mit Sehenswürdigkeiten zu füllen. Diese Liste macht das Gegenteil: sie streicht. Was übrig bleibt, sind Orte, an denen ihr zu zweit seid und nicht in einer Schlange.</p>
+    <div class="rule-gold"></div>
+  </header>
+
+  <section>
+    <span class="sec-mark">Der Filter</span>
+    <h2>Zwölf Dinge, die den Aufwand wert sind</h2>
+    <p class="lede">Sortiert danach, was sie euch abverlangen. Ein Wecker um drei ist ein Preis. Ein Umweg ist ein Preis. Geld ist der billigste davon.</p>
+
+    <div class="keep">
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Der Fußweg zum Seruni Point</h3>
+          <span class="item-where">Bromo · 9.9.</span>
+        </div>
+        <div class="costs"><span class="cost wecker">Wecker 03:00</span><span class="cost">Eine Stunde bergauf</span></div>
+        <p>Zweihundert Jeeps fahren gleichzeitig dieselbe Serpentine hoch — das ist der Stau aus dem Video. Ihr lauft stattdessen. Eine Stunde im Dunkeln aus Cemoro Lawang heraus, Stirnlampen an, und irgendwann liegt hinter euch die ganze Lichterkette der Kolonne, während vor euch nichts ist.</p>
+        <p><strong>Das ist der romantischste Moment der gesamten Reise</strong>, und er kostet nichts außer Wachsein. Auf halber Strecke lohnt es sich, die Lampen für eine Minute auszumachen. Über Ostjava steht im September die Milchstraße.</p>
+        <div class="how"><b>So macht ihr's</b>Um 03:15 los, oben seid ihr gegen 04:15. Warm anziehen — es sind 5 °C und ihr steht danach eine Stunde still.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Der Moment, in dem der Ijen-See türkis wird</h3>
+          <span class="item-where">Kawah Ijen · 11.9.</span>
+        </div>
+        <div class="costs"><span class="cost wecker">Wecker 00:00</span><span class="cost geld">Guide nötig</span></div>
+        <p>Alle reden vom blauen Feuer. Das Bessere kommt danach: ihr steht am Kraterrand, es wird langsam hell, und der größte Säuresee der Erde schaltet von Schwarz auf ein Türkis, das falsch aussieht. Dazu die Schwefelträger, die mit 70 Kilo auf der Schulter an euch vorbeigehen, seit vier Stunden.</p>
+        <p><strong>Ehrlich zum blauen Feuer:</strong> der Abstieg in den Krater ist steil, rutschig und voller Gas. Ihr steht mit Maske in einer Menschenschlange in giftigem Rauch. Wenn einer von euch beiden zweifelt — lasst es. Der Sonnenaufgang vom Rand ist das eigentliche Bild, und den bekommt ihr ohne Krater.</p>
+        <div class="how"><b>So macht ihr's</b>Guide vorab in Banyuwangi buchen, nicht am Gate. Auf einem echten Respirator bestehen, nicht auf der Papiermaske.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Borobudur, erster Slot am Montag</h3>
+          <span class="item-where">Yogyakarta · 7.9.</span>
+        </div>
+        <div class="costs"><span class="cost wecker">Wecker 05:30</span><span class="cost geld">455.000 IDR p. P.</span></div>
+        <p>Teuer, streng getaktet, mit Pflichtguide und Leihsandalen — und trotzdem eine der wenigen Anlagen der Welt, die den Aufwand rechtfertigen. Um halb neun an einem Montag liegt der Dunst noch im Tal, und ihr geht über die Terrassen, während der Rest des Tages noch nicht angereist ist.</p>
+        <div class="how"><b>So macht ihr's</b>Danach nicht zurück nach Yogya, sondern zwei Kilometer weiter nach Mendut. Ein winziger Tempel auf derselben Achse, drin sitzt ein drei Meter hoher Buddha von 800 n. Chr., und meistens seid ihr allein damit.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Prambanan in der letzten Stunde</h3>
+          <span class="item-where">Yogyakarta · 5.9.</span>
+        </div>
+        <div class="costs"><span class="cost">Nur die Uhrzeit</span></div>
+        <p>Kein Kontingent, keine Slots, kein Aufstiegsticket — und trotzdem beeindruckender als sein berühmter Nachbar, weil man zwischen den Türmen stehen darf statt auf ihnen. Kommt ihr um 16 Uhr, sind die Reisegruppen weg und die Türme werden orange.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Menjangan</h3>
+          <span class="item-where">Nordwest-Bali · 12.9.</span>
+        </div>
+        <div class="costs"><span class="cost geld">~ 50 € zu zweit</span><span class="cost">Bootsfahrt</span></div>
+        <p>Die beste Sicht unter Wasser auf ganz Bali, weil die Insel im Nationalpark liegt und niemand dort fischt. Eine Steilwand, die einfach senkrecht ins Blau abfällt. Vom Boot aus reicht Schnorcheln völlig — die Wand fängt bei drei Metern an.</p>
+        <p>Und der eigentliche Grund, warum Pemuteran im Plan steht: es ist der einzige Ort auf Bali, an dem ihr nach der Fähre <em>sofort</em> ankommt, statt noch vier Stunden zu fahren. Kein Beachclub, kein Verkehr, abends nur das Meer.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Die Straße über Munduk</h3>
+          <span class="item-where">Zentral-Bali · 13.9.</span>
+        </div>
+        <div class="costs"><span class="cost">Umweg statt Küste</span></div>
+        <p>Der Weg von Pemuteran nach Ubud ist keine Verbindung, sondern die Attraktion. Nelken- und Kaffeeplantagen, Nebel im Hochland, der Bratan-See mit dem Tempel im Wasser. Nehmt einen Fahrer statt zu mieten — dann könnt ihr beide aus dem Fenster schauen.</p>
+        <div class="how"><b>So macht ihr's</b>Nicht Sekumpul (Eintrittskette, Guidezwang, dreimal kassiert), sondern Banyumala Twin Waterfall. Kurzer Abstieg, ein Becken, in dem man tatsächlich schwimmt.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Sidemen</h3>
+          <span class="item-where">Ost-Bali · siehe Tausch unten</span>
+        </div>
+        <div class="costs"><span class="cost">Umweg, 1 h ab Ubud</span></div>
+        <p>Reisterrassen ohne Selfie-Plattformen, ohne Eintrittsposten alle zweihundert Meter, ohne Rollerkonvois. Das Tal ist das, was Ubud vor zwanzig Jahren war, mit dem Agung als Kulisse. Für 60 bis 100 Euro die Nacht bekommt ihr hier eine Villa mit eigenem Pool und Blick über das ganze Tal — in Seminyak zahlt ihr das für ein Zimmer an einer Hauptstraße.</p>
+        <p><strong>Wenn ihr diese Reise an einer Stelle romantischer machen wollt, dann hier.</strong></p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Tirta Empul um sieben</h3>
+          <span class="item-where">bei Ubud · 14.9.</span>
+        </div>
+        <div class="costs"><span class="cost wecker">Wecker 06:00</span></div>
+        <p>Ein Quelltempel, in dem man sich unter zwölf Wasserspeiern nacheinander reinigt. Ab zehn Uhr ist es ein Instagram-Becken mit Anstehen. Um sieben ist es das, wofür es gebaut wurde, und ihr steht zwischen Balinesen, die zum Beten da sind. Sarong wird gestellt.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Kelingking um halb sieben</h3>
+          <span class="item-where">Nusa Penida · 17.9.</span>
+        </div>
+        <div class="costs"><span class="cost wecker">Wecker 05:45</span></div>
+        <p>Ab zehn Uhr steht ihr am Aussichtspunkt in einer Schlange fürs Foto, weil dann die Tagesboote aus Bali ankommen. Um halb sieben ist niemand da. Es ist exakt derselbe Mechanismus wie am Bromo: nicht der Ort ist das Problem, sondern die Uhrzeit.</p>
+        <p><strong>Den Abstieg zum Strand aber nicht.</strong> Zwei Stunden Klettern an einem Bambusgeländer in der Hitze, unten eine Strömung, in der man nicht schwimmen sollte. Die Aussicht ist das Ziel, der Strand ist die Falle.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Die Ostseite von Penida</h3>
+          <span class="item-where">Nusa Penida · 18.9.</span>
+        </div>
+        <div class="costs"><span class="cost">Schlechte Straßen</span></div>
+        <p>Diamond Beach und Atuh liegen anderthalb Stunden über löchrige Pisten vom Hafen entfernt — genau deshalb kommen die Tagesausflügler nicht hin. Dieselben Klippen, dasselbe Türkis, ein Zehntel der Leute.</p>
+        <div class="how"><b>So macht ihr's</b>Am Vormittag vorher raus zum Manta Point. Im September stehen die Chancen gut, und früh ist die See ruhig genug, dass es auch Spaß macht.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Kecak am Uluwatu-Tempel</h3>
+          <span class="item-where">Süd-Bali · 19.9.</span>
+        </div>
+        <div class="costs"><span class="cost geld">~ 150.000 IDR p. P.</span></div>
+        <p>Die einzige durchtouristisierte Sache auf dieser Liste, die trotzdem liefert. Siebzig Männer im Kreis, kein einziges Instrument, nur Stimmen — und im Rücken der Bühne fällt die Sonne hinter die Klippe ins Meer. Karten eine Stunde vorher holen, sonst sitzt ihr hinten.</p>
+        <div class="how"><b>So macht ihr's</b>Taschen und Sonnenbrillen weg — die Affen am Tempel sind Profis. Nicht füttern, nicht anfassen: Tollwut ist auf Bali real.</div>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-name">Jimbaran, Tisch im Sand</h3>
+          <span class="item-where">Süd-Bali · 20.9.</span>
+        </div>
+        <div class="costs"><span class="cost geld">~ 40 € zu zweit</span></div>
+        <p>Klingt nach Prospekt, ist aber echt: Fischgrill direkt am Wasser, Tische stehen im Sand, ihr sucht euch den Fisch vorher aus. Für den letzten Abend genau richtig, und zehn Minuten vom Flughafen.</p>
+        <div class="how"><b>So macht ihr's</b>Vorher nach dem Kilopreis fragen und ihn bestätigen lassen. Die Rechnungen am Strand fallen sonst gern kreativ aus.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-mark">Der Rest</span>
+    <h2>Und das lasst ihr weg</h2>
+    <p class="lede">Nicht weil es schlecht wäre, sondern weil es Zeit frisst, die woanders mehr wert ist. Jede Zeile hier ist ein halber gewonnener Tag.</p>
+
+    <div class="skip">
+      <div class="skip-row">
+        <span class="skip-name">Lempuyang, „Gates of Heaven“</span>
+        <span class="skip-why">Ein bis drei Stunden anstehen für ein Foto — und <em>der See darunter existiert nicht</em>. Das ist ein Spiegel, den ein Angestellter unter das Handy hält. Für einen echten Tempel dieser Größenordnung: Besakih.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Bali Swing</span>
+        <span class="skip-why">Rund 35 Dollar für eine Schaukel über einer Schlucht. Die Schlucht ist gratis.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Tegallalang</span>
+        <span class="skip-why">Reisterrassen mit Kassenhäuschen und an jedem Aussichtspunkt nochmal Hand auf. Jatiluwih ist eine Stunde weiter, dreimal so groß und fast leer — oder gleich Sidemen.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Floating Breakfast</span>
+        <span class="skip-why">Kaltes Essen auf einem Tablett im Chlorwasser, fotografiert und dann weggeschoben. Das Foto dauert vier Minuten, das Frühstück ist ruiniert.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Monkey Forest Ubud</span>
+        <span class="skip-why">Die Affen klauen organisiert, und Tollwut ist auf Bali kein theoretisches Risiko. Ihr seht unterwegs genug Makaken, ohne dafür zu zahlen.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Tanah Lot zum Sonnenuntergang</span>
+        <span class="skip-why">Busparkplatz, dreihundert Meter Souvenirgasse, dann eine Menschenmauer. Uluwatu macht dasselbe besser.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Kuta, Legian, Seminyak</span>
+        <span class="skip-why">Es gibt in achtzehn Tagen keinen einzigen Grund, dort hinzufahren.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Canggu</span>
+        <span class="skip-why">Zwei Kilometer in vierzig Minuten, und am Ende ein Café, das aussieht wie in Lissabon. Ihr seid nicht deswegen geflogen.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Punthuk Setumbu</span>
+        <span class="skip-why">Der „Borobudur-Sonnenaufgang“ vom Hügel: ihr steht mit hundert Leuten im Dunkeln und seht drei Kilometer entfernt einen Buckel im Dunst. Schlaft lieber und geht in den ersten Slot.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Jakarta</span>
+        <span class="skip-why">Ankommen, schlafen, weiterfliegen. Die Stadt hat viel, aber nichts, wofür man einen von achtzehn Tagen ausgibt.</span>
+      </div>
+      <div class="skip-row">
+        <span class="skip-name">Ein dritter Vulkan</span>
+        <span class="skip-why">Batur ab drei Uhr nachts, nachdem ihr Bromo und Ijen schon hattet. Es wäre eine Wiederholung, und zwar die schwächste.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-mark">Ein Vorschlag</span>
+    <div class="swap">
+      <h3>Tauscht zwei Ubud-Nächte gegen Sidemen</h3>
+      <p>Ubud ist die Basis für Tirta Empul und die Wasserfälle, und dafür reicht eine Nacht. Die anderen beiden sind in Sidemen besser aufgehoben: gleiche Gesamtzahl, gleicher Ablauf, aber ihr wacht zweimal über einem Tal auf statt an einer Straße mit Rollerverkehr.</p>
+      <p>Tirta Empul liegt ohnehin auf dem Weg — ihr nehmt es morgens am Abreisetag mit und seid mittags in Sidemen.</p>
+      <div class="swap-cols">
+        <div class="swap-col">
+          <h4>Bisher</h4>
+          <ol>
+            <li>13.9. Ubud</li>
+            <li>14.9. Ubud</li>
+            <li>15.9. Ubud</li>
+          </ol>
+        </div>
+        <div class="swap-col new">
+          <h4>Besser zu zweit</h4>
+          <ol>
+            <li>13.9. Ubud</li>
+            <li>14.9. Sidemen</li>
+            <li>15.9. Sidemen</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-mark">Die Momente</span>
+    <h2>Sieben Termine, die nur euch zwei gehören</h2>
+    <p class="lede">Alles darüber lässt sich buchen. Das hier nicht — es passiert nur, wenn ihr an dem Tag zur richtigen Stunde am richtigen Ort steht. Deshalb steht es mit Datum hier.</p>
+
+    <div class="moments">
+      <div class="moment">
+        <span class="moment-when">5.9.<span>Freitag</span></span>
+        <div>
+          <p class="moment-title">Prambanan, kurz vor Schließung</p>
+          <p>Die Gruppen sind weg, das Licht fällt flach zwischen die Türme, und die Anlage gehört für vierzig Minuten fast euch. Setzt euch einfach hin, statt weiterzulaufen.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <span class="moment-when">9.9.<span>Mittwoch</span></span>
+        <div>
+          <p class="moment-title">Lampen aus, auf halbem Weg</p>
+          <p>Irgendwo zwischen Cemoro Lawang und dem Seruni Point, gegen vier Uhr. Eine Minute ohne Licht, keine Stadt in Sichtweite, 2.400 Meter Höhe. Der Rest der Reise wird nicht mehr so still.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <span class="moment-when">11.9.<span>Freitag</span></span>
+        <div>
+          <p class="moment-title">Wenn der Ijen-See die Farbe wechselt</p>
+          <p>Ihr steht seit Stunden im Dunkeln und friert, und dann kippt der ganze Krater innerhalb von zehn Minuten von Schwarz nach Türkis. Nicht filmen. Hinterher tut es euch nicht leid.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <span class="moment-when">11.9.<span>abends</span></span>
+        <div>
+          <p class="moment-title">Die Überfahrt</p>
+          <p>Eine Stunde auf dem Oberdeck zwischen Java und Bali, nach der härtesten Nacht der Reise. Nehmt die Nachmittagsfähre, dann liegt die Straße von Bali im Abendlicht. Und stellt die Uhren vor.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <span class="moment-when">12.9.<span>Samstag</span></span>
+        <div>
+          <p class="moment-title">Pemuteran nach Sonnenuntergang</p>
+          <p>Der Nordwesten hat keine Beachclubs, keine Musik, keine Lichterketten. Nur einen dunklen Strand, ein Warung mit Plastikstühlen und gegrillten Fisch für acht Euro. Das ist der Abend, an dem ihr merkt, dass Bali auch anders geht.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <span class="moment-when">15.9.<span>Dienstag</span></span>
+        <div>
+          <p class="moment-title">Ein Tag ohne Programm in Sidemen</p>
+          <p>Nichts anschauen. Terrasse, Tal, Regen, der um vier durchzieht und wieder aufhört. Genau ein solcher Tag pro Reise ist der, an den man sich später erinnert — und der ist nur planbar, wenn man ihn hinschreibt.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <span class="moment-when">17.9.<span>Donnerstag</span></span>
+        <div>
+          <p class="moment-title">Kelingking, bevor irgendwer da ist</p>
+          <p>Halb sieben, die Klippe ist leer, das Wasser sechshundert Meter unter euch. Zwei Stunden später ist hier eine Warteschlange. Ihr habt sie einfach nicht gesehen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-mark">Vier Regeln</span>
+    <h2>Was diese Reise leise macht</h2>
+    <div class="rules">
+      <div class="rule-item">
+        <h3>Sonnenaufgang schlägt Sonnenuntergang</h3>
+        <p>Auf Bali sind alle Sunset-Spots voll und alle Sunrise-Spots leer. Dieselbe Aussicht, dieselbe Farbe, die Hälfte der Leute — der einzige Preis ist der Wecker. Fast jeder Punkt dieser Liste lebt davon.</p>
+      </div>
+      <div class="rule-item">
+        <h3>Zwei Nächte oder gar nicht</h3>
+        <p>Jeder Ort, an dem ihr nur eine Nacht bleibt, besteht aus Kofferpacken und Fahren. Deshalb steht in diesem Plan nur ein einziger Ein-Nacht-Stopp — der Bromo, und da geht es nicht anders.</p>
+      </div>
+      <div class="rule-item">
+        <h3>Fahrer statt Roller, an den langen Tagen</h3>
+        <p>Sechzig bis siebzig Euro für einen ganzen Tag mit Auto und Fahrer, zu zweit geteilt. Ihr könnt beide aus dem Fenster schauen, statt einer zu fahren und einer sich festzuhalten. Für die kurzen Wege auf Penida oder in Sidemen bleibt der Roller besser.</p>
+      </div>
+      <div class="rule-item">
+        <h3>Einmal richtig Geld ausgeben — aber nicht im Süden</h3>
+        <p>Was in Seminyak ein Zimmer kostet, ist in Sidemen oder Munduk eine Villa mit eigenem Pool und Blick über ein Tal. Wenn ihr euch eine Nacht gönnt, gönnt sie euch dort, wo abends niemand vorbeifährt.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Beiblatt zum Reiseplan Java &amp; Bali, 3.–21. September 2026.<br>
+    Preise gerundet, Stand August 2026.
+    <br><a class="sitenav" href="./index.html">&larr; Zurück zum Reiseplan</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
