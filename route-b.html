@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Alternativroute für 18 Nächte: Java-Vulkane, Amed, Gili Air mit Tauchschein, Nusa Penida, Canggu.">
+<title>Route B · Java, Gilis, Penida, Canggu</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { max-width: 100%; height: auto; }
+  h1, h2, h3, h4, p, ol, ul, table, figure { margin: 0; }
+  table { border-collapse: collapse; }
+  .sitenav {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+  .sitenav + .sitenav { margin-left: 22px; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --ground:   #E5EDEF;
+    --surface:  #F1F7F8;
+    --sunken:   #D4E0E3;
+    --ink:      #0F2831;
+    --ink-soft: #46626C;
+    --ink-faint:#7B939B;
+    --rule:     #B8C9CE;
+    --rule-soft:#CAD8DC;
+    --magenta:  #A31D6D;
+    --teal:     #0C5B6C;
+    --sand:     #8A7433;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:   #08181E;
+      --surface:  #0F2831;
+      --sunken:   #051115;
+      --ink:      #DEEAEE;
+      --ink-soft: #90A8B0;
+      --ink-faint:#617E88;
+      --rule:     #1E3C46;
+      --rule-soft:#163037;
+      --magenta:  #F45FAC;
+      --teal:     #48B4C6;
+      --sand:     #CDB874;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:   #08181E;
+    --surface:  #0F2831;
+    --sunken:   #051115;
+    --ink:      #DEEAEE;
+    --ink-soft: #90A8B0;
+    --ink-faint:#617E88;
+    --rule:     #1E3C46;
+    --rule-soft:#163037;
+    --magenta:  #F45FAC;
+    --teal:     #48B4C6;
+    --sand:     #CDB874;
+  }
+  :root[data-theme="light"] {
+    --ground:   #E5EDEF;
+    --surface:  #F1F7F8;
+    --sunken:   #D4E0E3;
+    --ink:      #0F2831;
+    --ink-soft: #46626C;
+    --ink-faint:#7B939B;
+    --rule:     #B8C9CE;
+    --rule-soft:#CAD8DC;
+    --magenta:  #A31D6D;
+    --teal:     #0C5B6C;
+    --sand:     #8A7433;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  :root {
+    --display: "Avenir Next Condensed", "HelveticaNeue-CondensedBold", "Roboto Condensed", "Arial Narrow", sans-serif;
+    --body: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, "SF Mono", monospace;
+  }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { padding: 56px 0 26px; border-bottom: 3px solid var(--ink); }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--magenta);
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(40px, 8.5vw, 78px);
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    margin: 14px 0 0;
+    text-wrap: balance;
+  }
+  .standfirst { margin: 20px 0 0; max-width: 58ch; font-size: 18.5px; color: var(--ink-soft); }
+
+  .strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .strip-cell {
+    flex: 1 1 150px;
+    padding: 16px 18px 18px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .strip-cell + .strip-cell { border-left: 1px solid var(--rule-soft); padding-left: 18px; }
+  .strip-k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .strip-v {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- sections ---------- */
+
+  section { padding-top: 58px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(26px, 4.6vw, 36px);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+  .sec-k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin: 14px 0 30px; }
+
+  /* ---------- why ---------- */
+
+  .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 26px 38px; }
+  .why-item { border-top: 2px solid var(--teal); padding-top: 14px; }
+  .why-item h3 { font-family: var(--display); font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; margin: 0 0 7px; }
+  .why-item p { margin: 0; font-size: 15.5px; color: var(--ink-soft); }
+
+  /* ---------- route ---------- */
+
+  .route { margin-top: 6px; }
+  .stop {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 0 22px;
+  }
+  .spine {
+    position: relative;
+    border-left: 2px solid var(--rule);
+    margin-left: 17px;
+    padding-bottom: 4px;
+  }
+  .stop .spine::before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 12px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--ground);
+    border: 3px solid var(--teal);
+  }
+  .stop.big .spine::before { border-color: var(--magenta); }
+  .nights {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    position: absolute;
+    left: -46px;
+    top: 34px;
+    width: 40px;
+    text-align: right;
+    text-transform: uppercase;
+  }
+  .stop-body { padding: 6px 0 26px; }
+  .stop-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 4px; }
+  .stop-name {
+    font-family: var(--display);
+    font-size: clamp(24px, 4vw, 31px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    margin: 0;
+    line-height: 1.05;
+  }
+  .stop-dates {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+  }
+  .stop-body p { margin: 10px 0 0; max-width: 64ch; color: var(--ink-soft); }
+  .stop-body p strong { color: var(--ink); font-weight: 600; }
+  .doing { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .doing span {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: var(--sunken);
+    color: var(--ink-soft);
+  }
+
+  .leg {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 0 22px;
+  }
+  .leg .spine { border-left: 2px dotted var(--rule); }
+  .leg-body {
+    padding: 0 0 22px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--teal);
+    font-variant-numeric: tabular-nums;
+  }
+  .leg-body em { font-style: normal; color: var(--ink-faint); }
+  @media (max-width: 540px) {
+    .stop, .leg { grid-template-columns: 34px 1fr; gap: 0 14px; }
+    .spine { margin-left: 8px; }
+    .nights { display: none; }
+  }
+
+  /* ---------- skills ---------- */
+
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; border-top: 1px solid var(--rule); }
+  .skill { padding: 26px 0; border-bottom: 1px solid var(--rule-soft); }
+  .skill + .skill { border-top: 0; }
+  @media (min-width: 700px) {
+    .skill:nth-child(odd) { padding-right: 34px; border-right: 1px solid var(--rule-soft); }
+    .skill:nth-child(even) { padding-left: 34px; }
+  }
+  .skill h3 { font-family: var(--display); font-size: 23px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.015em; margin: 0 0 4px; }
+  .skill .meta { font-family: var(--mono); font-size: 11px; color: var(--magenta); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 10px; }
+  .skill p { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
+  .skill p + p { margin-top: 10px; }
+
+  /* ---------- notices (chart magenta) ---------- */
+
+  .notices { border-top: 3px solid var(--magenta); }
+  .notice { padding: 22px 0; border-bottom: 1px solid var(--rule-soft); display: grid; grid-template-columns: 1fr; gap: 6px; }
+  .notice h3 {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: var(--magenta);
+  }
+  .notice p { margin: 0; color: var(--ink-soft); max-width: 68ch; }
+  .notice p + p { margin-top: 9px; }
+  .notice p strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- money ---------- */
+
+  .scroller { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 440px; }
+  th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--rule-soft); }
+  th { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); font-weight: 400; border-bottom-color: var(--rule); }
+  td { font-size: 15.5px; color: var(--ink-soft); }
+  td:first-child { color: var(--ink); }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; padding-right: 0; white-space: nowrap; color: var(--ink); }
+  tr.total td { border-bottom: 0; border-top: 3px solid var(--ink); font-weight: 700; padding-top: 13px; }
+  tr.total td.num { color: var(--magenta); }
+
+  /* ---------- sources ---------- */
+
+  .src { columns: 2; column-gap: 40px; font-size: 14.5px; }
+  @media (max-width: 620px) { .src { columns: 1; } }
+  .src li { break-inside: avoid; margin-bottom: 9px; color: var(--ink-soft); }
+  .src a { color: var(--teal); }
+
+  footer {
+    margin-top: 66px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    line-height: 1.85;
+  }
+
+  a { color: var(--magenta); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="kicker">Alternative zum ersten Plan · 3.–21. September 2026</span>
+    <h1>Route B<br>Wasser statt Tempel</h1>
+    <p class="standfirst">Derselbe Rahmen, dieselben 18 Nächte — aber gebaut für zwei Zweiundzwanzigjährige statt für ein Reisebüro. Weniger Autofahren, mehr Boote. Und ihr kommt mit etwas nach Hause, das ihr vorher nicht konntet.</p>
+  </header>
+
+  <div class="strip">
+    <div class="strip-cell"><span class="strip-k">Nächte</span><span class="strip-v">18</span></div>
+    <div class="strip-cell"><span class="strip-k">Stopps</span><span class="strip-v">8</span></div>
+    <div class="strip-cell"><span class="strip-k">Boote</span><span class="strip-v">4</span></div>
+    <div class="strip-cell"><span class="strip-k">Längste Fahrt</span><span class="strip-v">5 h</span></div>
+    <div class="strip-cell"><span class="strip-k">Am Boden ca.</span><span class="strip-v">1.700 €</span></div>
+  </div>
+
+  <section>
+    <span class="sec-k">Warum anders</span>
+    <h2>Was sich gegenüber Plan A ändert</h2>
+    <p class="lede">Der erste Plan war gut, aber er war für ein Paar gebaut, das abends früh essen geht. Vier Dinge sind hier anders — und jedes davon hat einen Grund.</p>
+    <div class="why">
+      <div class="why-item">
+        <h3>Ubud fliegt raus</h3>
+        <p>Ubud ist Wellness, Yoga-Retreats und Cafés mit Betonoptik. Für die Reisterrassen reicht ein Tag von unterwegs. Die drei Nächte sind auf den Gilis deutlich besser investiert.</p>
+      </div>
+      <div class="why-item">
+        <h3>Vier Nächte Gili Air</h3>
+        <p>Keine Autos, keine Motorräder, kein Verkehr — nur Fahrräder und Pferdekarren. Der einzige Ort dieser Reise, an dem man wirklich nichts muss, und gleichzeitig der beste Ort zum Tauchenlernen.</p>
+      </div>
+      <div class="why-item">
+        <h3>Amed statt Pemuteran</h3>
+        <p>Auch ruhig, auch direkt hinter der Fähre — aber davor liegt das 120 Meter lange Wrack der USAT Liberty, 30 Meter vom Strand, ab drei Metern Tiefe. Man läuft hinein.</p>
+      </div>
+      <div class="why-item">
+        <h3>Canggu statt Uluwatu</h3>
+        <p>Uluwatu ist zum Angucken schön und zum Surfen unbrauchbar, wenn man es nicht kann. Canggu hat mit Batu Bolong die geduldigste Anfängerwelle Balis — und im September steht der Wind richtig.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Die Kette</span>
+    <h2>Acht Stopps, vier Boote</h2>
+    <p class="lede">Von West nach Ost über Land, dann per Boot zurück nach Süden. Zwischen den Stopps steht, wie ihr hinkommt und wie lange es dauert.</p>
+
+    <div class="route">
+
+      <div class="stop">
+        <div class="spine"><span class="nights">1 Nacht</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Jakarta</h3><span class="stop-dates">3.9. · Do</span></div>
+          <p>Landung 20:35. Flughafenhotel, sonst nichts. Die Stadt ist spannend, aber nicht spannend genug für einen von achtzehn Tagen.</p>
+        </div>
+      </div>
+      <div class="leg"><div class="spine"></div><div class="leg-body">✈ Flug CGK → YIA · 1 h 15 · <em>dann Airport-Zug in die Stadt, 40 min</em></div></div>
+
+      <div class="stop big">
+        <div class="spine"><span class="nights">3 Nächte</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Yogyakarta</h3><span class="stop-dates">4.–6.9. · Fr–So</span></div>
+          <p>Indonesiens Studentenstadt — die Gadjah-Mada-Universität prägt den ganzen Ort, sonntags ist der Campus-Boulevard voll mit Leuten in eurem Alter. Essen ab 5.000 Rupiah, also dreißig Cent. Angkringan Tugu ist die Institution für Kaffee um Mitternacht auf einer Strohmatte am Straßenrand.</p>
+          <p><strong>Borobudur</strong> nur im ersten Slot und nur online vorgebucht, sonst lohnt es nicht. <strong>Prambanan</strong> dafür am späten Nachmittag, und wenn ihr Glück habt, läuft abends das Ramayana-Ballett vor der beleuchteten Anlage.</p>
+          <div class="doing"><span>Borobudur</span><span>Prambanan</span><span>Merapi-Jeep</span><span>Streetfood</span><span>Live-Musik</span></div>
+        </div>
+      </div>
+      <div class="leg"><div class="spine"></div><div class="leg-body">✈ Flug YIA → SUB · 1 h &nbsp;·&nbsp; 🚐 Fahrer nach Cemoro Lawang · 4 h</div></div>
+
+      <div class="stop">
+        <div class="spine"><span class="nights">1 Nacht</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Bromo</h3><span class="stop-dates">7.9. · Mo</span></div>
+          <p>2.200 Meter, nachts unter 10 Grad, keine Heizung. Um 03:00 raus. Lauft die Stunde zum Seruni Point hoch, statt euch in die Jeep-Kolonne zum Penanjakan einzureihen — das ist der Stau, den alle fotografieren.</p>
+          <div class="doing"><span>Sonnenaufgang</span><span>Sandmeer</span><span>Kraterrand</span></div>
+        </div>
+      </div>
+      <div class="leg"><div class="spine"></div><div class="leg-body">🚐 Fahrt nach Banyuwangi über die Nordküste · 5 h</div></div>
+
+      <div class="stop big">
+        <div class="spine"><span class="nights">2 Nächte</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Ijen</h3><span class="stop-dates">8.–9.9. · Di–Mi</span></div>
+          <p>Ein voller Tag Pause dazwischen, und das ist kein Luxus: für den Ijen braucht ihr seit 2024 ein ärztliches Attest, das nicht älter als sieben Tage sein darf. Gibt es in Banyuwangi in jeder Klinik für ein bis fünf Euro.</p>
+          <p>In der Nacht auf Donnerstag um Mitternacht los. Drei Kilometer hoch, blaues Feuer im Krater, danach oben bleiben, bis der Säuresee bei Sonnenaufgang türkis wird. <strong>Gasmaske ist Pflicht, und zwar eine echte</strong> — die Papierdinger sind Dekoration.</p>
+          <div class="doing"><span>Blaues Feuer</span><span>Kratersee</span><span>Attest holen</span></div>
+        </div>
+      </div>
+      <div class="leg"><div class="spine"></div><div class="leg-body">⛴ Fähre Ketapang → Gilimanuk · 1 h &nbsp;·&nbsp; 🚐 nach Amed · 4 h &nbsp;·&nbsp; <em>+1 h Zeitzone</em></div></div>
+
+      <div class="stop big">
+        <div class="spine"><span class="nights">3 Nächte</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Amed &amp; Tulamben</h3><span class="stop-dates">10.–12.9. · Do–Sa</span></div>
+          <p>Schwarze Kieselstrände, Fischerboote, kaum Verkehr, und morgens steht die Sonne über Lombok. Der Grund, hier zu sein, liegt 30 Meter vom Strand: die <strong>USAT Liberty</strong>, ein 120 Meter langes Wrack von 1942, das bei drei Metern anfängt und bei dreißig aufhört. Man läuft vom Kiesstrand hinein — einer der besten Ufer-Wrackdives der Welt, und im September ist die Sicht am besten.</p>
+          <p>Zum Schnorcheln reicht das flache Ende völlig. Wer den Tauchschein hier statt auf den Gilis macht, taucht ihn am Wrack — auch nicht das schlechteste Argument.</p>
+          <div class="doing"><span>Liberty-Wrack</span><span>Freediving</span><span>Sonnenaufgang</span><span>Japanisches Wrack</span></div>
+        </div>
+      </div>
+      <div class="leg"><div class="spine"></div><div class="leg-body">🚤 Schnellboot Amed → Gili Air · 1 h 30 · <em>Abfahrt ca. 09:30</em></div></div>
+
+      <div class="stop big">
+        <div class="spine"><span class="nights">4 Nächte</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Gili Air</h3><span class="stop-dates">13.–16.9. · So–Mi</span></div>
+          <p>Die mittlere der drei Inseln: nicht die Party von Trawangan, nicht die Einsamkeit von Meno. Auf keiner der Inseln gibt es Autos oder Motorräder — man geht zu Fuß, fährt Rad oder nimmt eine Pferdekutsche. Eine Runde um die Insel dauert zwei Stunden.</p>
+          <p><strong>Hier macht ihr den Tauchschein.</strong> Die Tauchschulen der Gilis haben feste Preise, an die sich alle halten: 5.500.000 Rupiah für den Open Water, also rund 310 Euro, drei Tage. Kein Handeln, keine Dumpingschule, die an der Ausrüstung spart. Grüne Meeresschildkröten seht ihr am ersten Tag.</p>
+          <p>Für einen Abend nach Trawangan rüber — zehn Minuten mit dem Boot, und ihr könnt jederzeit zurück. Wohnen würde ich dort nicht.</p>
+          <div class="doing"><span>PADI Open Water</span><span>Schildkröten</span><span>Fahrrad</span><span>Sonnenuntergang mit Rinjani</span><span>eine Nacht Gili T</span></div>
+        </div>
+      </div>
+      <div class="leg"><div class="spine"></div><div class="leg-body">🚤 Schnellboot Gili Air → Nusa Penida · 1 h 45 · <em>direkt, ohne Umweg über Bali</em></div></div>
+
+      <div class="stop">
+        <div class="spine"><span class="nights">2 Nächte</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Nusa Penida</h3><span class="stop-dates">17.–18.9. · Do–Fr</span></div>
+          <p>Die Klippen, die ihr von überall kennt. Kelingking um halb sieben, dann seid ihr allein — ab zehn kommen die Tagesboote aus Bali und es wird eine Schlange. Am zweiten Morgen raus zu den Mantas; im September stehen die Chancen gut.</p>
+          <p><strong>Den Abstieg zum Kelingking-Strand lasst weg.</strong> Zwei Stunden Klettern in der Hitze, und unten eine Strömung, in der man nicht schwimmt.</p>
+          <div class="doing"><span>Kelingking 06:30</span><span>Manta Point</span><span>Diamond Beach</span><span>Crystal Bay</span></div>
+        </div>
+      </div>
+      <div class="leg"><div class="spine"></div><div class="leg-body">🚤 Boot → Sanur · 45 min &nbsp;·&nbsp; 🚐 nach Canggu · 1 h 30</div></div>
+
+      <div class="stop">
+        <div class="spine"><span class="nights">2 Nächte</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Canggu</h3><span class="stop-dates">19.–20.9. · Sa–So</span></div>
+          <p>Zum Abschluss der laute Teil. September ist mitten in der Surfsaison: an der Westküste weht der Wind ablandig, und <strong>Batu Bolong</strong> ist die freundlichste Anfängerwelle der Insel — lang, langsam, kein Riff-Drama. Surfshops alle hundert Meter, Stunde mit Lehrer für etwa 25 Euro.</p>
+          <p>Früh raus lohnt auch hier: mittags steht man im Wasser im Stau. Abends hat Canggu die Bars, die Yogyakarta nicht hat und Amed nicht will.</p>
+          <div class="doing"><span>Surfstunde</span><span>Batu Bolong</span><span>Sonnenuntergang Echo Beach</span><span>letzte Nacht</span></div>
+        </div>
+      </div>
+      <div class="leg"><div class="spine"></div><div class="leg-body">🚐 Canggu → Flughafen DPS · 1 h &nbsp;·&nbsp; ✈ DPS → CGK gegen 16:00 · <em>Garuda, Terminal 3</em></div></div>
+
+      <div class="stop">
+        <div class="spine"><span class="nights">Abflug</span></div>
+        <div class="stop-body">
+          <div class="stop-head"><h3 class="stop-name">Jakarta → Abu Dhabi</h3><span class="stop-dates">21.9. · Mo</span></div>
+          <p>Etihad geht um 00:05. Nehmt Garuda für den Inlandsflug — die landen in Terminal 3, wo Etihad abfliegt, fünf Minuten zu Fuß. Wer in T1 oder T2 landet, braucht den Skytrain und anderthalb Stunden.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Der Unterschied</span>
+    <h2>Zwei Sachen, die ihr mitnehmt</h2>
+    <p class="lede">Der Grund, warum diese Route besser zu euch passt als eine Tempelrunde: ihr fahrt mit etwas nach Hause, das ihr behaltet.</p>
+    <div class="skills">
+      <div class="skill">
+        <h3>Tauchschein</h3>
+        <span class="meta">Gili Air · 3 Tage · ~310 € p. P.</span>
+        <p>PADI Open Water, gültig ein Leben lang, weltweit. Die Gilis sind einer der besten Orte der Welt dafür: flaches Wasser, kaum Strömung, Schildkröten an fast jedem Tauchplatz — und alle Schulen haben denselben Festpreis, es gibt also keinen Anreiz, an der Sicherheit zu sparen.</p>
+        <p>Drei Tage Theorie, Pool und vier Freiwassertauchgänge. Wenn ihr am 13. ankommt, seid ihr am 16. zertifiziert und habt noch einen Tag frei.</p>
+      </div>
+      <div class="skill">
+        <h3>Surfen</h3>
+        <span class="meta">Canggu · 2 Tage · ~25 € pro Stunde</span>
+        <p>September ist die Saison. Batu Bolong ist genau die Welle, an der man es lernt: sie bricht langsam, sie verzeiht, und darunter ist kein Riff, das einen bestraft. Zwei Stunden mit Lehrer reichen, um am zweiten Tag allein rauszupaddeln.</p>
+        <p>Uluwatu, Padang Padang und Bingin sehen auf Fotos besser aus und sind für Anfänger schlicht gefährlich. Hinfahren zum Zuschauen, nicht zum Reinpaddeln.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Nicht überlesen</span>
+    <h2>Was ihr wissen müsst</h2>
+    <p class="lede">Fünf Punkte, die in keinem Reiseblog stehen, weil sie sich schlecht verkaufen. Vier davon betreffen euch als junges Paar direkt.</p>
+
+    <div class="notices">
+
+      <div class="notice">
+        <h3>Roller: euer Führerschein reicht wahrscheinlich nicht</h3>
+        <p>In Indonesien braucht ihr für einen 125er einen <strong>internationalen Führerschein mit Motorrad-Eintrag</strong> plus die entsprechende heimische Klasse. Ein deutscher Klasse-B-Autoführerschein genügt nicht — auch nicht mit der B196-Erweiterung, die nur in Deutschland gilt. Der internationale Führerschein übernimmt nur die Klassen, die ihr wirklich habt.</p>
+        <p>Die Polizei auf Bali kontrolliert das seit 2025 systematisch. Bußgeld 250.000 bis über 1.000.000 Rupiah — aber das ist nicht das Problem. <strong>Ohne gültige Fahrerlaubnis zahlt keine Versicherung.</strong> Ein Rollerunfall auf Bali ist der häufigste Grund, warum junge Reisende ausgeflogen werden müssen. Nehmt Grab und Gojek, das kostet fast nichts. Auf Gili Air gibt es ohnehin keine Motorräder.</p>
+      </div>
+
+      <div class="notice">
+        <h3>Das neue Strafgesetzbuch, seit 2. Januar 2026</h3>
+        <p>Indonesiens neues Strafgesetzbuch ist in Kraft. Darin: Sex außerhalb der Ehe bis zu einem Jahr Haft, unverheiratetes Zusammenleben bis zu sechs Monaten. Das Auswärtige Amt führt es in den Sicherheitshinweisen.</p>
+        <p><strong>Die Einordnung, die dabei meist fehlt:</strong> es ist ein Antragsdelikt. Anzeige erstatten können ausschließlich Ehepartner, Eltern oder Kinder der beteiligten Person. Hotelpersonal, Nachbarn, Polizei oder empörte Dritte können das nicht. Für zwei Reisende, die zusammen unterwegs sind und niemanden mit Antragsrecht im Land haben, ist das praktisch folgenlos — kein Hotel wird nach einer Heiratsurkunde fragen. Wissen solltet ihr es trotzdem, und Diskretion in kleinen, konservativen Orten wie Amed ist ohnehin die bessere Idee als in Canggu.</p>
+      </div>
+
+      <div class="notice">
+        <h3>Drogen: Todesstrafe, und das ist nicht theoretisch</h3>
+        <p>Auf Gili Trawangan werden euch abends Pilze und anderes offen angeboten. Indonesien verhängt für Handel die Todesstrafe und vollstreckt sie, für Besitz gibt es lange Haftstrafen. Ausländer sitzen in Kerobokan. Das ist der eine Punkt auf dieser Liste, bei dem es keine Grauzone gibt.</p>
+      </div>
+
+      <div class="notice">
+        <h3>Arak</h3>
+        <p>Der lokale Reisschnaps wird regelmäßig mit Methanol gestreckt — es sterben jedes Jahr Menschen daran, auch Touristen. Betrifft vor allem billige Cocktail-Eimer und Happy Hours abseits etablierter Bars. Bleibt bei Bier aus der versiegelten Flasche oder bei Bars, die einen Ruf zu verlieren haben.</p>
+      </div>
+
+      <div class="notice">
+        <h3>Strömung zwischen den Gilis</h3>
+        <p>Die Inseln sehen aus, als könnte man zwischen ihnen schwimmen. Kann man nicht — die Strömung dort hat schon mehrere Menschen das Leben gekostet. Nehmt das Boot, es kostet ein paar Euro.</p>
+        <p>Für die Schnellboote generell: nehmt die großen, etablierten Betreiber statt des billigsten Angebots am Steg, und schaut, ob Rettungswesten für alle da sind. Und der <strong>Hafen von Amed war zuletzt wegen Bauarbeiten gesperrt</strong> — checkt das ein paar Tage vorher, sonst fahrt ihr ab Padang Bai.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Wenn ihr mehr wollt</span>
+    <h2>Der Zusatz: Rinjani</h2>
+    <p class="lede">Von Gili Air seht ihr ihn jeden Abend im Sonnenuntergang. 3.726 Meter, und die beste Mehrtagestour Südostasiens.</p>
+    <p style="max-width:64ch;color:var(--ink-soft);margin:0 0 14px;">Die Saison läuft von April bis Dezember, September passt also. 2D1N ab etwa 165 Dollar pro Person, 3D2N zwischen 155 und 260 — mit Guide, Trägern, Zelt und Essen. Täglich werden 400 Genehmigungen vergeben, 240 davon an Ausländer; in der Hochsaison sind die zwei bis drei Monate vorher weg.</p>
+    <p style="max-width:64ch;color:var(--ink-soft);margin:0;"><strong style="color:var(--ink)">Ehrlich dazu:</strong> das ist kein dritter Bromo. Der Gipfelaufstieg beginnt um zwei Uhr nachts auf loser Vulkanasche, es geht drei Schritte hoch und zwei zurück, und oben ist es empfindlich kalt. Wenn ihr das wollt, nehmt drei Tage aus dem Gili- und Penida-Block. Wenn ihr nach Bromo und Ijen genug Vulkan hattet, lasst es — dann ist der Sonnenuntergang über seiner Silhouette mit einem Bier in der Hand auch völlig in Ordnung.</p>
+  </section>
+
+  <section>
+    <span class="sec-k">Rechnung</span>
+    <h2>Was das kostet</h2>
+    <p class="lede">Für zwei Personen, alles nach der Landung. Ohne Tauchschein liegt ihr bei etwa 1.100 Euro — das ist der Punkt, an dem diese Route günstiger ist als Plan A und trotzdem mehr Inhalt hat.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Posten</th><th>Detail</th><th class="num">für 2</th></tr></thead>
+        <tbody>
+          <tr><td>Visum &amp; Bali-Abgabe</td><td>e-VOA plus Love-Bali-Levy</td><td class="num">~ 74 €</td></tr>
+          <tr><td>Inlandsflüge</td><td>CGK–YIA, YIA–SUB, DPS–CGK</td><td class="num">~ 300 €</td></tr>
+          <tr><td>Boote &amp; Fähre</td><td>4 Überfahrten</td><td class="num">~ 190 €</td></tr>
+          <tr><td>Fahrer auf Java</td><td>Surabaya–Bromo–Banyuwangi–Amed</td><td class="num">~ 230 €</td></tr>
+          <tr><td>Borobudur</td><td>Aufstiegsticket, online</td><td class="num">~ 52 €</td></tr>
+          <tr><td>Bromo &amp; Ijen</td><td>Eintritte, Jeep, Guide, Maske, Attest</td><td class="num">~ 160 €</td></tr>
+          <tr><td>Tauchschein</td><td>2 × PADI Open Water, Gili Air</td><td class="num">~ 620 €</td></tr>
+          <tr><td>Surfstunden</td><td>je 2 Stunden mit Board</td><td class="num">~ 100 €</td></tr>
+          <tr><td>Unterkunft</td><td>18 Nächte, einfach bis mittel</td><td class="num">~ 620 €</td></tr>
+          <tr><td>Essen &amp; Rest</td><td>~ 30 €/Tag zu zweit</td><td class="num">~ 540 €</td></tr>
+          <tr class="total"><td>Summe</td><td>ohne Puffer</td><td class="num">~ 2.890 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Woher das kommt</span>
+    <h2>Quellen</h2>
+    <p class="lede">Keine TikToks, keine Reiseveranstalter-Blogs. Reiseführer, die niemandem etwas verkaufen wollen, plus die amtlichen Hinweise.</p>
+    <ul class="src">
+      <li><a href="https://en.wikivoyage.org/wiki/Java">Wikivoyage — Java</a>: Ostjava, Bromo, Transport, Warnungen</li>
+      <li><a href="https://en.wikivoyage.org/wiki/Yogyakarta">Wikivoyage — Yogyakarta</a>: Studentenstadt, Streetfood ab 5.000 Rp, Nachtleben</li>
+      <li><a href="https://en.wikivoyage.org/wiki/Gili_Islands">Wikivoyage — Gili Islands</a>: Festpreise beim Tauchen, Strömungswarnung, Arak, Drogenrecht</li>
+      <li><a href="https://en.wikivoyage.org/wiki/Lombok">Wikivoyage — Lombok</a>: Rinjani, Südküste, Sicherheit</li>
+      <li><a href="https://www.travelfish.org/trip_planner/where-to-go-in/indonesia">Travelfish — Indonesien-Routenplaner</a>: unabhängige Routenvorschläge Java → Bali → Gilis</li>
+      <li><a href="https://www.roughguides.com/indonesia/itineraries/">Rough Guides — Indonesien-Routen</a></li>
+      <li><a href="https://www.lonelyplanet.com/thorntree/forums/asia-south-east-asia-islands-peninsula/indonesia/three-weeks-itinerary-indonesia-bali-lombok">Lonely Planet Thorn Tree</a>: Drei-Wochen-Route Java–Bali–Lombok</li>
+      <li><a href="https://www.auswaertiges-amt.de/de/service/laender/indonesien-node/indonesiensicherheit-212396">Auswärtiges Amt</a>: Sicherheitslage, neues Strafgesetzbuch, Verkehr, Bali-Abgabe</li>
+      <li><a href="https://www.zubludiving.com/articles/zublu-insights/diving-tulambens-usat-liberty-wreck">ZuBlu</a>: USAT Liberty, Tiefen, beste Zeit</li>
+      <li><a href="https://www.giliferries.com/fast-boat/amed/gili-air">GiliFerries</a>: Bootsverbindungen und Fahrzeiten</li>
+      <li><a href="https://www.surfindonesia.com/2-week-bali-guide/">Surf Indonesia</a>: Saison, Windrichtung, Anfängerbreaks</li>
+      <li><a href="https://greenrinjani.com/mount-rinjani/">Rinjani-Nationalpark</a>: Saison, Kontingente, Preise 2026</li>
+    </ul>
+  </section>
+
+  <footer>
+    Route B · Stand August 2026 · Preise gerundet, Kurs ~17.500 IDR je Euro.<br>
+    Bootsfahrpläne, Hafensperrungen und Vulkanstatus eine Woche vor Anreise gegenchecken.
+    <br><a class="sitenav" href="./index.html">Plan A &middot; Reiseplan</a><a class="sitenav" href="./fuer-zwei.html">Nur das, was bleibt</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
