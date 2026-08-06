@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Was für Route B gebucht werden muss, nach Frist sortiert, mit Haken zum Abarbeiten.">
+<title>Buchungsliste · Route B</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { max-width: 100%; height: auto; }
+  h1, h2, h3, h4, p, ol, ul, table, figure { margin: 0; }
+  table { border-collapse: collapse; }
+  .sitenav {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+  .sitenav + .sitenav { margin-left: 22px; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --ground:   #ECEBE7;
+    --surface:  #F7F6F3;
+    --sunken:   #DEDCD6;
+    --ink:      #1A1A17;
+    --ink-soft: #56564F;
+    --ink-faint:#8B8B82;
+    --rule:     #C8C6BE;
+    --rule-soft:#D8D6CE;
+    --stamp:    #A82B18;
+    --done:     #416B37;
+
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, "SF Mono", "Roboto Mono", monospace;
+    --body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:   #16161A;
+      --surface:  #1F1F25;
+      --sunken:   #0D0D10;
+      --ink:      #E8E7E2;
+      --ink-soft: #9E9E98;
+      --ink-faint:#71716B;
+      --rule:     #32323A;
+      --rule-soft:#26262D;
+      --stamp:    #F0715A;
+      --done:     #82BC71;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#16161A; --surface:#1F1F25; --sunken:#0D0D10; --ink:#E8E7E2;
+    --ink-soft:#9E9E98; --ink-faint:#71716B; --rule:#32323A; --rule-soft:#26262D;
+    --stamp:#F0715A; --done:#82BC71;
+  }
+  :root[data-theme="light"] {
+    --ground:#ECEBE7; --surface:#F7F6F3; --sunken:#DEDCD6; --ink:#1A1A17;
+    --ink-soft:#56564F; --ink-faint:#8B8B82; --rule:#C8C6BE; --rule-soft:#D8D6CE;
+    --stamp:#A82B18; --done:#416B37;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 22px 90px; }
+
+  /* ---------- head ---------- */
+
+  .masthead { padding: 50px 0 0; }
+  .doc-k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  h1 {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: clamp(30px, 5.6vw, 46px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 12px 0 0;
+  }
+  .standfirst { margin: 16px 0 0; max-width: 60ch; color: var(--ink-soft); }
+
+  .meter {
+    margin-top: 30px;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .meter-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 18px;
+    padding: 14px 16px 12px;
+  }
+  .meter-count { font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; }
+  .meter-count b { color: var(--done); font-weight: 600; }
+  .meter-days { font-family: var(--mono); font-size: 12.5px; color: var(--stamp); letter-spacing: 0.05em; }
+  .bar { height: 5px; background: var(--sunken); }
+  .bar-fill { height: 100%; width: 0; background: var(--done); transition: width .18s ease; }
+  @media (prefers-reduced-motion: reduce) { .bar-fill { transition: none; } }
+  .meter-actions { padding: 10px 16px 12px; border-top: 1px solid var(--rule-soft); }
+  .reset {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .reset:hover { border-color: var(--stamp); color: var(--stamp); }
+  .reset:focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
+
+  .fixed {
+    margin-top: 26px;
+    padding: 15px 17px;
+    background: var(--surface);
+    border-left: 3px solid var(--done);
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .fixed b { color: var(--ink); }
+
+  /* ---------- blocks ---------- */
+
+  .block { margin-top: 44px; }
+  .block-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 16px;
+    padding-bottom: 9px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .block-when {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    border: 1px solid var(--stamp);
+    padding: 3px 8px;
+  }
+  .block-title {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: clamp(18px, 3.2vw, 23px);
+    letter-spacing: -0.02em;
+    margin: 0;
+    flex: 1;
+    min-width: 180px;
+  }
+  .block-note { font-size: 14.5px; color: var(--ink-soft); margin: 12px 0 0; max-width: 64ch; }
+
+  /* ---------- items ---------- */
+
+  .item {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 3px 14px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .item input[type="checkbox"] {
+    grid-row: 1 / span 3;
+    width: 18px;
+    height: 18px;
+    margin: 3px 0 0;
+    accent-color: var(--done);
+    cursor: pointer;
+  }
+  .item input:focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
+  .it-title { font-weight: 600; font-size: 16.5px; line-height: 1.3; }
+  .it-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin-top: 1px;
+  }
+  .it-meta .cost { color: var(--stamp); }
+  .it-note { font-size: 14.5px; color: var(--ink-soft); margin-top: 5px; max-width: 66ch; }
+  .it-note b { color: var(--ink); }
+  .item.is-done .it-title,
+  .item.is-done .it-note { color: var(--ink-faint); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .item.is-done .it-note b { color: var(--ink-faint); }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.87em;
+    background: var(--sunken);
+    padding: 1px 5px;
+    word-break: break-all;
+  }
+
+  /* ---------- lodging table ---------- */
+
+  .scroller { overflow-x: auto; margin-top: 10px; }
+  table { border-collapse: collapse; width: 100%; min-width: 430px; }
+  th, td { text-align: left; padding: 8px 14px 8px 0; border-bottom: 1px solid var(--rule-soft); font-size: 14.5px; }
+  th {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 400;
+    border-bottom-color: var(--rule);
+  }
+  td.d { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink-soft); }
+  td.n { font-family: var(--mono); text-align: right; padding-right: 0; white-space: nowrap; }
+  tr.warn td { color: var(--stamp); }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    line-height: 1.85;
+  }
+  a { color: var(--stamp); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--stamp); outline-offset: 3px; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="doc-k">Route B · Java, Gilis, Penida, Canggu · 3.–21. September 2026</span>
+    <h1>Was ihr buchen müsst</h1>
+    <p class="standfirst">Nach Frist sortiert, nicht nach Reihenfolge der Reise. Oben steht, was zuerst ausverkauft ist. Häkchen bleiben gesetzt, auch wenn ihr die Seite neu ladet.</p>
+
+    <div class="meter">
+      <div class="meter-top">
+        <span class="meter-count"><b id="mDone">0</b> von <span id="mAll">0</span> erledigt</span>
+        <span class="meter-days" id="mDays">&nbsp;</span>
+      </div>
+      <div class="bar"><div class="bar-fill" id="mBar"></div></div>
+      <div class="meter-actions"><button class="reset" id="mReset" type="button">Alle Haken zurücksetzen</button></div>
+    </div>
+
+    <p class="fixed"><b>Schon gebucht und erledigt:</b> die Etihad-Flüge München–Jakarta und Jakarta–München inklusive je 25 kg Gepäck. Daran müsst ihr nichts mehr machen außer dem Online-Check-in — der steht weiter unten mit Datum.</p>
+  </header>
+
+  <!-- ============================================================= -->
+  <div class="block">
+    <div class="block-head">
+      <span class="block-when">Sofort</span>
+      <h2 class="block-title">Diese Woche, sonst wird es eng</h2>
+    </div>
+    <p class="block-note">Alles hier hat entweder ein Kontingent, das wegläuft, oder einen medizinischen Vorlauf, den man nicht abkürzen kann.</p>
+
+    <label class="item">
+      <input type="checkbox" data-id="borobudur">
+      <span class="it-title">Borobudur-Aufstiegsticket</span>
+      <span class="it-meta"><span>borobudurpark.com</span><span class="cost">455.000 IDR p. P.</span><span>Sa 5.9., Slot 08:30</span></span>
+      <span class="it-note">Täglich nur 1.200 Plätze in 90-Minuten-Slots, ausgebucht ein bis zwei Wochen vorher. <b>Das ist der engste Posten auf dieser Liste.</b> Achtet darauf, das <b>Aufstiegs</b>-Ticket zu nehmen — das billigere Gelände-Ticket lässt euch nicht auf die Stupa-Terrassen. Route B hat in Yogyakarta nur drei Nächte, deshalb fällt Borobudur auf ein Wochenende; der erste Slot ist trotzdem der leerste des Tages.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="fluege">
+      <span class="it-title">Drei Inlandsflüge</span>
+      <span class="it-meta"><span>Garuda / Citilink</span><span class="cost">~ 300 € zu zweit</span><span>4.9. · 7.9. · 21.9.</span></span>
+      <span class="it-note">CGK→YIA früh am 4.9. · YIA→SUB früh am 7.9. · DPS→CGK gegen 16:00 am 21.9. Für den letzten <b>unbedingt Garuda</b>: die landen in Terminal 3, wo Etihad abfliegt, fünf Minuten zu Fuß. Aus T1/T2 braucht ihr Skytrain und 90 Minuten.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="tauchkurs">
+      <span class="it-title">PADI Open Water auf Gili Air</span>
+      <span class="it-meta"><span>Tauchschule direkt anschreiben</span><span class="cost">5.500.000 IDR p. P.</span><span>14.–16.9.</span></span>
+      <span class="it-note">Festpreis, alle Schulen auf den Gilis nehmen dasselbe — sucht also nach Bewertungen, nicht nach dem Preis. <b>Macht die eLearning-Theorie vorher zu Hause</b>, dann verbringt ihr auf der Insel nur Zeit im Wasser statt vor dem Laptop. Der Zugang kommt von der Schule, sobald ihr gebucht habt.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="versicherung">
+      <span class="it-title">Reiseversicherung — mit Tauchdeckung</span>
+      <span class="it-meta"><span>Auslandskranken + Rücktransport</span><span>vor Kursbeginn gültig</span></span>
+      <span class="it-note"><b>Der Punkt, den fast alle übersehen:</b> viele Auslandskrankenversicherungen schließen Tauchen aus oder decken es nur bis 18 oder 30 Meter. Wenn ihr den Open Water macht, muss Sporttauchen ausdrücklich drin sein — eine Druckkammerbehandlung kostet fünfstellig. Prüft im selben Zug den Rücktransport.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="impfen">
+      <span class="it-title">Impftermin beim Hausarzt</span>
+      <span class="it-meta"><span>Hepatitis A · Typhus · ggf. Tollwut</span><span>Vorlauf 3–4 Wochen</span></span>
+      <span class="it-note">Tollwut braucht drei Dosen über mehrere Wochen — wenn ihr das wollt, muss der erste Termin <b>jetzt</b> sein. Tollwut ist auf Bali präsent, und ihr seid viel mit Rollern, Straßenhunden und Affen unterwegs. Hepatitis A und Typhus gehen kurzfristiger.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="pass">
+      <span class="it-title">Reisepass prüfen</span>
+      <span class="it-meta"><span>beide Pässe</span><span>gültig bis ≥ 22.3.2027</span></span>
+      <span class="it-note">Sechs Monate über den Rückflug hinaus, mindestens eine freie Seite. Falls einer knapp ist: Expressbeantragung dauert etwa eine Woche, aber das e-VOA hängt an der Passnummer — also zuerst der Pass, dann das Visum.</span>
+    </label>
+  </div>
+
+  <!-- ============================================================= -->
+  <div class="block">
+    <div class="block-head">
+      <span class="block-when">bis ~20. Aug.</span>
+      <h2 class="block-title">Unterkünfte und Transport</h2>
+    </div>
+    <p class="block-note">September ist noch Hauptsaison. Cemoro Lawang und Gili Air sind die beiden, bei denen ihr sonst wirklich nichts Gutes mehr bekommt.</p>
+
+    <label class="item">
+      <input type="checkbox" data-id="unterkuenfte">
+      <span class="it-title">Neun Unterkünfte</span>
+      <span class="it-meta"><span>18 Nächte</span><span class="cost">~ 620 € zu zweit</span></span>
+      <span class="it-note">Auf Gili Air und in Amed lohnt es sich, direkt zu schreiben statt über ein Portal — auf den Inseln ist das oft günstiger und ihr bekommt gleich den Bootstransfer organisiert.</span>
+    </label>
+
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Ort</th><th>Datum</th><th class="n">Nächte</th><th>Hinweis</th></tr></thead>
+        <tbody>
+          <tr><td>Jakarta Flughafen</td><td class="d">3.9.</td><td class="n">1</td><td>Nur zum Schlafen, Terminal 3</td></tr>
+          <tr><td>Yogyakarta</td><td class="d">4.–6.9.</td><td class="n">3</td><td>Zentrum, nicht am Flughafen</td></tr>
+          <tr class="warn"><td>Cemoro Lawang</td><td class="d">7.9.</td><td class="n">1</td><td>Wenige Betten, keine Heizung — früh buchen</td></tr>
+          <tr><td>Banyuwangi</td><td class="d">8.–9.9.</td><td class="n">2</td><td>Nah am Fährhafen Ketapang</td></tr>
+          <tr><td>Pemuteran</td><td class="d">10.9.</td><td class="n">1</td><td>Erholung nach dem Ijen</td></tr>
+          <tr><td>Amed</td><td class="d">11.–12.9.</td><td class="n">2</td><td>Nähe Tulamben spart Fahrzeit zum Wrack</td></tr>
+          <tr class="warn"><td>Gili Air</td><td class="d">13.–16.9.</td><td class="n">4</td><td>Hochsaison, früh buchen</td></tr>
+          <tr><td>Nusa Penida</td><td class="d">17.–18.9.</td><td class="n">2</td><td>Im Nordwesten, nah am Hafen</td></tr>
+          <tr><td>Canggu</td><td class="d">19.–20.9.</td><td class="n">2</td><td>Laufweite zu Batu Bolong</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <label class="item" style="margin-top:20px">
+      <input type="checkbox" data-id="fahrer">
+      <span class="it-title">Fahrer für die Java-Etappen</span>
+      <span class="it-meta"><span>über die Unterkünfte</span><span class="cost">~ 230 € zu zweit</span></span>
+      <span class="it-note">Surabaya→Cemoro Lawang am 7.9. (4 h) · Cemoro Lawang→Banyuwangi am 8.9. (5 h) · Banyuwangi→Fähre→Pemuteran am 10.9. · Pemuteran→Amed am 11.9. (3 h). Ein Fahrer für die ganze Kette ist meist günstiger als vier einzelne.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="boote">
+      <span class="it-title">Drei Schnellboote</span>
+      <span class="it-meta"><span>Amed→Gili · Gili→Penida · Penida→Sanur</span><span class="cost">~ 190 € zu zweit</span></span>
+      <span class="it-note">Amed→Gili Air am 13.9. gegen 09:30 (1 h 30) · Gili Air→Nusa Penida am 17.9., direkt ohne Umweg über Bali (1 h 45) · Penida→Sanur am 19.9. morgens. Nehmt die großen, etablierten Betreiber, nicht das billigste Angebot am Steg.<br><br><b>Vorher prüfen:</b> der Hafen von Amed war zuletzt wegen Bauarbeiten gesperrt. Falls das im September noch gilt, fahrt ihr ab Padang Bai — dann braucht ihr für den 13.9. zusätzlich einen Transfer von Amed dorthin, etwa zwei Stunden.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="menjangan">
+      <span class="it-title">Menjangan-Schnorcheltour</span>
+      <span class="it-meta"><span>über die Unterkunft in Pemuteran</span><span class="cost">~ 50 € zu zweit</span><span>11.9. vormittags</span></span>
+      <span class="it-note">Halbtags, zurück gegen Mittag, danach fahrt ihr weiter nach Amed. Beste Unterwassersicht Balis, die Steilwand beginnt bei drei Metern — Schnorcheln reicht völlig.</span>
+    </label>
+  </div>
+
+  <!-- ============================================================= -->
+  <div class="block">
+    <div class="block-head">
+      <span class="block-when">bis ~29. Aug.</span>
+      <h2 class="block-title">Tickets, Visum, Abgaben</h2>
+    </div>
+    <p class="block-note">Alles online, alles in wenigen Minuten erledigt — aber ohne diese vier kommt ihr an der jeweiligen Schranke nicht durch. Speichert jeden QR-Code als Screenshot, das WLAN unterwegs ist Glückssache.</p>
+
+    <label class="item">
+      <input type="checkbox" data-id="evoa">
+      <span class="it-title">e-VOA beantragen</span>
+      <span class="it-meta"><span>Immigrationsportal</span><span class="cost">500.000 IDR p. P.</span><span>~ 28 €</span></span>
+      <span class="it-note">30 Tage, einmal verlängerbar. Ihr braucht 18 — passt locker. Für Deutsche unproblematisch, ihr bekommt es meist am selben Tag.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="bromo">
+      <span class="it-title">Bromo-Ticket</span>
+      <span class="it-meta"><span>bookingbromo.bromotenggersemeru.org</span><span class="cost">220.000 IDR p. P.</span><span>Datum: 8.9.</span></span>
+      <span class="it-note">Mindestens 48 Stunden vorher, an der Schranke gibt es seit 2024 <b>gar nichts</b> mehr. Bucht auf den <b>8.9.</b> — das ist der Tag des Sonnenaufgangs, nicht der Anreisetag. Dienstag ist ein Werktag, also der günstigere Tarif.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="ijen">
+      <span class="it-title">Ijen-Ticket</span>
+      <span class="it-meta"><span>BBKSDA Ostjava</span><span class="cost">100.000 IDR p. P.</span><span>Datum: 10.9.</span></span>
+      <span class="it-note">Ihr geht in der Nacht auf Donnerstag hoch, also ist das Eintrittsdatum der <b>10.9.</b> — Werktagstarif. Der Ijen schließt an jedem ersten Freitag im Monat zur Reinigung; das ist im September der 4., ihr seid also sauber raus. Prüft eine Woche vorher trotzdem den Vulkanstatus.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="levy">
+      <span class="it-title">Bali-Abgabe</span>
+      <span class="it-meta"><span>lovebali.baliprov.go.id</span><span class="cost">150.000 IDR p. P.</span><span>~ 8,50 €</span></span>
+      <span class="it-note">Einmal pro Einreise, gilt für den ganzen Aufenthalt. Ihr kommt per Fähre statt per Flug — fällig ist sie trotzdem, und 2026 wird sie erstmals wirklich kontrolliert.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="idp">
+      <span class="it-title">Internationaler Führerschein — <em>nur falls zutreffend</em></span>
+      <span class="it-meta"><span>Bürgerbüro, ~16 €</span><span>nur mit Klasse A oder A1</span></span>
+      <span class="it-note">Nur sinnvoll, wenn einer von euch tatsächlich eine Motorradklasse hat. <b>Ein deutscher Klasse-B-Führerschein reicht in Indonesien nicht für einen 125er</b>, auch nicht mit B196 — das gilt nur in Deutschland, und der internationale Schein überträgt nur eure echten Klassen. Ohne gültige Fahrerlaubnis zahlt nach einem Unfall keine Versicherung. Falls keiner von euch A oder A1 hat: Haken dranmachen, Punkt abhaken, Grab und Gojek nehmen.</span>
+    </label>
+  </div>
+
+  <!-- ============================================================= -->
+  <div class="block">
+    <div class="block-head">
+      <span class="block-when">31. Aug. – 1. Sept.</span>
+      <h2 class="block-title">Die letzten drei Tage</h2>
+    </div>
+    <p class="block-note">Beides geht erst kurz vorher — vorher versuchen bringt nichts.</p>
+
+    <label class="item">
+      <input type="checkbox" data-id="arrivalcard">
+      <span class="it-title">Arrival Card und Zollerklärung</span>
+      <span class="it-meta"><span>allindonesia.imigrasi.go.id</span><span>frühestens 31.8.</span><span>kostenlos</span></span>
+      <span class="it-note">Digitale Einreise- und Zollerklärung, maximal drei Tage vor Ankunft. Papierformulare gibt es seit Oktober 2025 nicht mehr. Beide Personen einzeln, QR als Screenshot sichern.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="checkin">
+      <span class="it-title">Online-Check-in Etihad, Hinflug</span>
+      <span class="it-meta"><span>etihad.com</span><span>ab 1.9., 16:30</span></span>
+      <span class="it-note">Buchungsnummer und Nachname stehen in der Bestätigungsmail. <b>Macht das online</b> — wer am Schalter eincheckt, zahlt bei Etihad unter Umständen drauf. Sitzplätze nebeneinander gibt es hier auch.</span>
+    </label>
+  </div>
+
+  <!-- ============================================================= -->
+  <div class="block">
+    <div class="block-head">
+      <span class="block-when">Vor Ort</span>
+      <h2 class="block-title">Was ihr erst in Indonesien bucht</h2>
+    </div>
+    <p class="block-note">Vorher zu buchen bringt hier nichts oder ist teurer. Nur beim Ijen-Guide lohnt eine Anfrage vorab, damit am Tag X jemand bereitsteht.</p>
+
+    <label class="item">
+      <input type="checkbox" data-id="ijenguide">
+      <span class="it-title">Ijen-Guide und Gasmaske</span>
+      <span class="it-meta"><span>Banyuwangi</span><span class="cost">~ 40 € zu zweit</span><span>vorab anfragen, vor Ort zahlen</span></span>
+      <span class="it-note">Für den Abstieg zum blauen Feuer ist ein Guide Pflicht. Besteht auf einem <b>echten Respirator</b> — die Papiermasken, die manche verteilen, taugen im Krater nichts.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="attest">
+      <span class="it-title">Ärztliches Attest für den Ijen</span>
+      <span class="it-meta"><span>Klinik oder Puskesmas in Banyuwangi</span><span class="cost">25.000–100.000 IDR</span><span>am 9.9.</span></span>
+      <span class="it-note">Seit 2024 Pflicht, darf maximal sieben Tage alt sein — deshalb liegt der Ruhetag am 9.9. genau davor. Es gibt inzwischen auch einen Medizinposten direkt am Paltuding-Gate.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="jeep">
+      <span class="it-title">Bromo-Jeep — <em>optional</em></span>
+      <span class="it-meta"><span>Unterkunft in Cemoro Lawang</span><span class="cost">600.000–800.000 IDR pro Jeep</span></span>
+      <span class="it-note">Braucht ihr nur, wenn ihr doch fahren wollt. Der Plan sieht vor, dass ihr in einer Stunde zu Fuß zum Seruni Point hochlauft — genau das umgeht die Jeep-Kolonne, die auf allen Videos zu sehen ist. Ins Sandmeer und zum Kraterrand kommt ihr danach ebenfalls zu Fuß.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="manta">
+      <span class="it-title">Manta-Schnorcheltour</span>
+      <span class="it-meta"><span>Nusa Penida</span><span class="cost">~ 45 € zu zweit</span><span>18.9. früh</span></span>
+      <span class="it-note">Am Vorabend im Ort buchen. Früh raus, dann ist die See ruhiger — an der Südküste von Penida wird es später am Tag ungemütlich.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="surf">
+      <span class="it-title">Surfstunden</span>
+      <span class="it-meta"><span>Canggu, Batu Bolong</span><span class="cost">~ 25 € pro Stunde</span><span>20.9.</span></span>
+      <span class="it-note">Surfshops alle hundert Meter, Buchung am Vortag reicht. Früh raus lohnt: mittags steht man auch im Wasser im Stau.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="faehre">
+      <span class="it-title">Fähre Ketapang → Gilimanuk</span>
+      <span class="it-meta"><span>Ferizy-App</span><span class="cost">~ 13.000 IDR p. P.</span><span>10.9. nachmittags</span></span>
+      <span class="it-note">Fährt rund um die Uhr alle 30 bis 60 Minuten, spontan völlig unproblematisch. Über die App spart ihr euch die Schlange am Schalter. Denkt an die Zeitumstellung: auf Bali ist es eine Stunde später.</span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="esim">
+      <span class="it-title">eSIM</span>
+      <span class="it-meta"><span>Telkomsel</span><span class="cost">~ 15 € für 30 Tage</span></span>
+      <span class="it-note">Vorab kaufen und erst nach der Landung aktivieren, oder am Flughafen holen. Telkomsel hat die beste Abdeckung in Ostjava — auf dem Weg zum Bromo und am Ijen ist das der einzige Anbieter, der zuverlässig etwas hat.</span>
+    </label>
+  </div>
+
+  <footer>
+    Buchungsliste zu Route B · Stand August 2026 · Preise gerundet, Kurs ~17.500 IDR je Euro.<br>
+    Häkchen liegen nur in diesem Browser. Wer die Liste zu zweit abarbeitet, hakt zweimal ab.
+    <br><a class="sitenav" href="./route-b.html">Route B</a><a class="sitenav" href="./index.html">Plan A</a><a class="sitenav" href="./tierlist.html">Tier List</a>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var KEY = 'jb26-buchungen';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.item input[type="checkbox"]'));
+  var elDone = document.getElementById('mDone');
+  var elAll = document.getElementById('mAll');
+  var elBar = document.getElementById('mBar');
+  var elDays = document.getElementById('mDays');
+  var elReset = document.getElementById('mReset');
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function save(state) {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  var state = load();
+
+  function paint() {
+    var done = 0;
+    boxes.forEach(function (b) {
+      b.parentNode.classList.toggle('is-done', b.checked);
+      if (b.checked) done++;
+    });
+    elDone.textContent = done;
+    elBar.style.width = boxes.length ? (done / boxes.length * 100) + '%' : '0';
+  }
+
+  elAll.textContent = boxes.length;
+  boxes.forEach(function (b) {
+    b.checked = !!state[b.dataset.id];
+    b.addEventListener('change', function () {
+      state[b.dataset.id] = b.checked;
+      save(state);
+      paint();
+    });
+  });
+  paint();
+
+  elReset.addEventListener('click', function () {
+    state = {};
+    save(state);
+    boxes.forEach(function (b) { b.checked = false; });
+    paint();
+  });
+
+  // Countdown to departure: 2 September 2026, 22:30 Munich (CEST = UTC+2)
+  var dep = new Date(Date.UTC(2026, 8, 2, 20, 30));
+  function tick() {
+    var ms = dep - new Date();
+    var days = Math.ceil(ms / 86400000);
+    if (ms <= 0) { elDays.textContent = 'unterwegs'; return; }
+    elDays.textContent = days === 1 ? 'noch 1 Tag bis zum Abflug' : 'noch ' + days + ' Tage bis zum Abflug';
+  }
+  tick();
+  setInterval(tick, 3600000);
+})();
+</script>
+
+</body>
+</html>
