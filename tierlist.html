@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="58 Orte auf Java, Bali und den Gilis in sechs Ligen sortiert — für ein Paar Anfang zwanzig im September.">
+<title>Tier List · Alle Orte, ehrlich sortiert</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { max-width: 100%; height: auto; }
+  h1, h2, h3, h4, p, ol, ul, table, figure { margin: 0; }
+  table { border-collapse: collapse; }
+  .sitenav {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+  .sitenav + .sitenav { margin-left: 22px; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --ground:   #E9E6E1;
+    --surface:  #F4F2EE;
+    --sunken:   #DBD7D0;
+    --ink:      #1B1814;
+    --ink-soft: #5D574E;
+    --ink-faint:#8C857A;
+    --rule:     #C8C2B8;
+    --rule-soft:#D7D2C9;
+    --hot:      #C1451A;
+
+    --t-s: #F2622A;
+    --t-a: #E0942A;
+    --t-b: #B79A3C;
+    --t-c: #6E8C86;
+    --t-d: #566A76;
+    --t-f: #4A4E52;
+
+    --heavy: "Helvetica Neue", "Arial Black", Helvetica, Arial, sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --note: "Hoefler Text", Baskerville, "Baskerville Old Face", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, "SF Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:   #141210;
+      --surface:  #1E1B17;
+      --sunken:   #0C0A09;
+      --ink:      #EDE9E3;
+      --ink-soft: #A69E92;
+      --ink-faint:#7A7267;
+      --rule:     #322E28;
+      --rule-soft:#26231E;
+      --hot:      #FF7A45;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:   #141210;
+    --surface:  #1E1B17;
+    --sunken:   #0C0A09;
+    --ink:      #EDE9E3;
+    --ink-soft: #A69E92;
+    --ink-faint:#7A7267;
+    --rule:     #322E28;
+    --rule-soft:#26231E;
+    --hot:      #FF7A45;
+  }
+  :root[data-theme="light"] {
+    --ground:   #E9E6E1;
+    --surface:  #F4F2EE;
+    --sunken:   #DBD7D0;
+    --ink:      #1B1814;
+    --ink-soft: #5D574E;
+    --ink-faint:#8C857A;
+    --rule:     #C8C2B8;
+    --rule-soft:#D7D2C9;
+    --hot:      #C1451A;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px 90px; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { padding: 54px 0 26px; }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hot);
+  }
+  h1 {
+    font-family: var(--heavy);
+    font-weight: 800;
+    font-size: clamp(40px, 8vw, 74px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin: 14px 0 0;
+    text-wrap: balance;
+  }
+  .standfirst { margin: 20px 0 0; max-width: 58ch; font-size: 18px; color: var(--ink-soft); }
+
+  .basis {
+    margin-top: 30px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border-left: 4px solid var(--hot);
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    max-width: 74ch;
+  }
+  .basis strong { color: var(--ink); }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 30px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .legend-cell { flex: 1 1 130px; padding: 13px 14px 14px 0; display: flex; align-items: baseline; gap: 9px; }
+  .legend-cell + .legend-cell { border-left: 1px solid var(--rule-soft); padding-left: 14px; }
+  .legend-dot { width: 11px; height: 11px; flex: none; transform: translateY(1px); }
+  .legend-txt { font-size: 13.5px; color: var(--ink-soft); line-height: 1.35; }
+  .legend-txt b { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); margin-bottom: 2px; font-weight: 400; }
+
+  /* ---------- tiers ---------- */
+
+  .tiers { margin-top: 46px; display: flex; flex-direction: column; gap: 12px; }
+
+  .tier { display: grid; grid-template-columns: 104px 1fr; gap: 10px; align-items: stretch; }
+  .tier-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 16px 8px;
+    background: var(--tc);
+    color: var(--tf);
+    text-align: center;
+  }
+  .tier-letter {
+    font-family: var(--heavy);
+    font-weight: 800;
+    font-size: 46px;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+  }
+  .tier-say {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.82;
+    line-height: 1.25;
+  }
+  .tier-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+    gap: 10px;
+  }
+  .card {
+    background: var(--surface);
+    border-top: 3px solid var(--tc);
+    padding: 11px 13px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .card-name { font-family: var(--heavy); font-weight: 700; font-size: 15.5px; letter-spacing: -0.012em; line-height: 1.2; }
+  .card-where { font-family: var(--mono); font-size: 9px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-faint); }
+  .card-why { font-family: var(--note); font-size: 14.5px; line-height: 1.42; color: var(--ink-soft); margin-top: 3px; }
+
+  .tier.s { --tc: var(--t-s); --tf: #1B0D05; }
+  .tier.a { --tc: var(--t-a); --tf: #1B1204; }
+  .tier.b { --tc: var(--t-b); --tf: #17130A; }
+  .tier.c { --tc: var(--t-c); --tf: #0B1413; }
+  .tier.d { --tc: var(--t-d); --tf: #EDF1F3; }
+  .tier.f { --tc: var(--t-f); --tf: #EDEFEF; }
+
+  @media (max-width: 620px) {
+    .tier { grid-template-columns: 1fr; gap: 8px; }
+    .tier-label { flex-direction: row; align-items: baseline; justify-content: flex-start; gap: 12px; padding: 9px 14px; text-align: left; }
+    .tier-letter { font-size: 30px; }
+    .tier-items { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  }
+
+  /* ---------- movers ---------- */
+
+  section { padding-top: 62px; }
+  h2 {
+    font-family: var(--heavy);
+    font-weight: 800;
+    font-size: clamp(26px, 4.6vw, 36px);
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+  .sec-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hot); display: block; margin-bottom: 10px; }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin: 14px 0 28px; }
+
+  .movers { border-top: 1px solid var(--rule); }
+  .mover {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: center;
+  }
+  .mover-name { font-family: var(--heavy); font-weight: 700; font-size: 16.5px; letter-spacing: -0.012em; }
+  .mover-why { grid-column: 1; font-family: var(--note); font-size: 14.5px; color: var(--ink-soft); }
+  .shift { display: flex; align-items: center; gap: 7px; grid-row: 1 / span 2; }
+  .pip {
+    font-family: var(--heavy);
+    font-weight: 800;
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.04em;
+  }
+  .pip.s { background: var(--t-s); color: #1B0D05; }
+  .pip.a { background: var(--t-a); color: #1B1204; }
+  .pip.b { background: var(--t-b); color: #17130A; }
+  .pip.c { background: var(--t-c); color: #0B1413; }
+  .pip.d { background: var(--t-d); color: #EDF1F3; }
+  .pip.f { background: var(--t-f); color: #EDEFEF; }
+  .arrow { font-family: var(--mono); font-size: 13px; color: var(--ink-faint); }
+  @media (max-width: 520px) {
+    .mover { grid-template-columns: 1fr; }
+    .shift { grid-row: auto; margin-top: 6px; }
+  }
+
+  /* ---------- verdict ---------- */
+
+  .verdict { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 26px 36px; border-top: 1px solid var(--rule); padding-top: 28px; }
+  .verdict-item h3 { font-family: var(--heavy); font-weight: 700; font-size: 19px; letter-spacing: -0.015em; margin: 0 0 6px; }
+  .verdict-item p { margin: 0; font-size: 15.5px; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 68px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    line-height: 1.85;
+  }
+  a { color: var(--hot); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--hot); outline-offset: 3px; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="kicker">Alle Orte aus Plan A und Route B · 58 Einträge</span>
+    <h1>Die ehrliche<br>Rangliste</h1>
+    <p class="standfirst">Jeder Ort, der auf einer der drei Seiten vorkommt, in sechs Ligen sortiert. Keine Diplomatie, keine „hat auch seinen Reiz“-Sätze.</p>
+
+    <p class="basis"><strong>Wonach hier sortiert wird:</strong> zwei Reisende Anfang zwanzig, als Paar, 18 Nächte, September — also Trockenzeit. Wer allein, mit Kindern oder im Januar reist, bekommt eine andere Liste. Ein Ort steht weit oben, wenn er den Aufwand rechtfertigt, den er verlangt: eine Sehenswürdigkeit, die zwei Stunden Anfahrt und drei Stunden Anstehen kostet, muss deutlich mehr liefern als eine, an der man ohnehin vorbeikommt.</p>
+
+    <div class="legend">
+      <div class="legend-cell"><span class="legend-dot" style="background:var(--t-s)"></span><span class="legend-txt"><b>S</b>Dafür fliegt man</span></div>
+      <div class="legend-cell"><span class="legend-dot" style="background:var(--t-a)"></span><span class="legend-txt"><b>A</b>Fest einplanen</span></div>
+      <div class="legend-cell"><span class="legend-dot" style="background:var(--t-b)"></span><span class="legend-txt"><b>B</b>Wenn es auf dem Weg liegt</span></div>
+      <div class="legend-cell"><span class="legend-dot" style="background:var(--t-c)"></span><span class="legend-txt"><b>C</b>Nur bei Zeit übrig</span></div>
+      <div class="legend-cell"><span class="legend-dot" style="background:var(--t-d)"></span><span class="legend-txt"><b>D</b>Gute PR, wenig dahinter</span></div>
+      <div class="legend-cell"><span class="legend-dot" style="background:var(--t-f)"></span><span class="legend-txt"><b>F</b>Aktiv vermeiden</span></div>
+    </div>
+  </header>
+
+  <div class="tiers">
+
+    <!-- ============ S ============ -->
+    <div class="tier s">
+      <div class="tier-label"><span class="tier-letter">S</span><span class="tier-say">Dafür fliegt man</span></div>
+      <div class="tier-items">
+        <div class="card"><span class="card-name">Kawah Ijen</span><span class="card-where">Ostjava</span><p class="card-why">Der größte Säuresee der Erde, der bei Sonnenaufgang von Schwarz auf Türkis kippt. Es gibt in Europa nichts, womit man das vergleichen könnte.</p></div>
+        <div class="card"><span class="card-name">Bromo-Caldera</span><span class="card-where">Ostjava</span><p class="card-why">Ein Vulkan in einem Sandmeer in einem größeren Vulkan. Zu Fuß hoch, nicht im Jeep — dann ist es S statt B.</p></div>
+        <div class="card"><span class="card-name">USAT Liberty</span><span class="card-where">Tulamben, Bali</span><p class="card-why">120 Meter Wrack, 30 Meter vom Strand, beginnt bei drei Metern Tiefe. Einer der besten Ufer-Wrackdives der Welt, und man läuft einfach hinein.</p></div>
+        <div class="card"><span class="card-name">Borobudur, erster Slot</span><span class="card-where">Yogyakarta</span><p class="card-why">Die größte buddhistische Anlage der Welt, mit Dunst im Tal und ohne Reisegruppen. Nur mit vorgebuchtem Aufstiegsticket.</p></div>
+        <div class="card"><span class="card-name">Gili Air</span><span class="card-where">vor Lombok</span><p class="card-why">Keine Autos, keine Motorräder. Der einzige Ort dieser Reise, an dem ihr wirklich nichts müsst — und der beste zum Tauchenlernen.</p></div>
+      </div>
+    </div>
+
+    <!-- ============ A ============ -->
+    <div class="tier a">
+      <div class="tier-label"><span class="tier-letter">A</span><span class="tier-say">Fest einplanen</span></div>
+      <div class="tier-items">
+        <div class="card"><span class="card-name">Kelingking um 06:30</span><span class="card-where">Nusa Penida</span><p class="card-why">Die Klippe, die ihr von überall kennt — und um halb sieben steht kein Mensch daneben.</p></div>
+        <div class="card"><span class="card-name">Manta Point</span><span class="card-where">Nusa Penida</span><p class="card-why">Mantas mit vier Metern Spannweite, im September gute Chancen. Früh raus, dann ist die See ruhig.</p></div>
+        <div class="card"><span class="card-name">Menjangan</span><span class="card-where">Nordwest-Bali</span><p class="card-why">Die beste Unterwassersicht der Insel, weil im Nationalpark nicht gefischt wird. Steilwand ab drei Metern.</p></div>
+        <div class="card"><span class="card-name">Sidemen</span><span class="card-where">Ost-Bali</span><p class="card-why">Reisterrassen ohne Kassenhäuschen, der Agung im Rücken. Das, was Ubud vor zwanzig Jahren war.</p></div>
+        <div class="card"><span class="card-name">Yogyakarta</span><span class="card-where">Zentraljava</span><p class="card-why">Studentenstadt mit Streetfood ab dreißig Cent und Kaffee um Mitternacht auf der Strohmatte. Die einzige Stadt der Reise, die man wirklich braucht.</p></div>
+        <div class="card"><span class="card-name">Prambanan spätnachmittags</span><span class="card-where">Yogyakarta</span><p class="card-why">Kein Kontingent, kein Zeitfenster — und man darf zwischen den Türmen stehen statt auf ihnen.</p></div>
+        <div class="card"><span class="card-name">Amed &amp; Tulamben</span><span class="card-where">Ost-Bali</span><p class="card-why">Schwarze Kiesel, Fischerboote, Sonnenaufgang über Lombok. Kein Verkehr, keine Beachclubs, halbe Preise.</p></div>
+        <div class="card"><span class="card-name">Batu Bolong</span><span class="card-where">Canggu</span><p class="card-why">Die geduldigste Anfängerwelle Balis, und im September steht der Wind ablandig. Nach zwei Stunden paddelt ihr allein raus.</p></div>
+        <div class="card"><span class="card-name">Die Straße über Munduk</span><span class="card-where">Zentral-Bali</span><p class="card-why">Nelkenplantagen, Nebel, Kraterseen. Die Fahrt ist nicht der Weg zum Ziel, sie ist das Ziel.</p></div>
+        <div class="card"><span class="card-name">Diamond Beach &amp; Atuh</span><span class="card-where">Nusa Penida Ost</span><p class="card-why">Dieselben Klippen wie im Westen, anderthalb Stunden schlechte Piste entfernt — deshalb ein Zehntel der Leute.</p></div>
+        <div class="card"><span class="card-name">Rinjani, 2–3 Tage</span><span class="card-where">Lombok</span><p class="card-why">3.726 Meter, Kratersee, Gipfelaufstieg ab zwei Uhr nachts auf loser Asche. Grandios, aber nur, wenn ihr nach Bromo und Ijen noch Lust auf Vulkan habt.</p></div>
+      </div>
+    </div>
+
+    <!-- ============ B ============ -->
+    <div class="tier b">
+      <div class="tier-label"><span class="tier-letter">B</span><span class="tier-say">Wenn es auf dem Weg liegt</span></div>
+      <div class="tier-items">
+        <div class="card"><span class="card-name">Tirta Empul, 07:00</span><span class="card-where">bei Ubud</span><p class="card-why">Reinigungsritual unter zwölf Wasserspeiern. Um sieben ein Tempel, ab zehn ein Fotobecken.</p></div>
+        <div class="card"><span class="card-name">Mendut</span><span class="card-where">bei Borobudur</span><p class="card-why">Winziger Tempel, drei Meter hoher Buddha von 800 n. Chr., meistens menschenleer. Zwei Kilometer vom Hauptmagneten.</p></div>
+        <div class="card"><span class="card-name">Uluwatu-Kecak</span><span class="card-where">Süd-Bali</span><p class="card-why">Siebzig Männer, kein Instrument, dahinter die Sonne im Meer. Durchtouristisiert und trotzdem gut.</p></div>
+        <div class="card"><span class="card-name">Jomblang-Höhle</span><span class="card-where">bei Yogyakarta</span><p class="card-why">Mittags fällt ein Lichtstrahl durch die Doline. Braucht Voranmeldung und einen frühen Start.</p></div>
+        <div class="card"><span class="card-name">Merapi-Jeep</span><span class="card-where">bei Yogyakarta</span><p class="card-why">Lavafelder und Ruinendörfer von 2010. Staubig, ruppig, historisch interessant — kein Naturwunder.</p></div>
+        <div class="card"><span class="card-name">Jatiluwih</span><span class="card-where">Zentral-Bali</span><p class="card-why">Die Reisterrassen, die Tegallalang gern wäre: dreimal so groß, UNESCO-gelistet, fast leer.</p></div>
+        <div class="card"><span class="card-name">Pemuteran</span><span class="card-where">Nordwest-Bali</span><p class="card-why">Der einzige Ort, an dem man nach der Fähre sofort ankommt. Künstliches Biorock-Riff direkt am Strand.</p></div>
+        <div class="card"><span class="card-name">Banyumala-Wasserfall</span><span class="card-where">bei Munduk</span><p class="card-why">Kurzer Abstieg, ein Becken, in dem man tatsächlich schwimmt. Anders als die berühmteren Nachbarn.</p></div>
+        <div class="card"><span class="card-name">Ulun Danu Bratan</span><span class="card-where">Zentral-Bali</span><p class="card-why">Der Tempel auf dem See, der auf dem 50.000-Rupiah-Schein ist. Hübsch, schnell abgehakt, liegt ohnehin am Weg.</p></div>
+        <div class="card"><span class="card-name">Jimbaran</span><span class="card-where">Süd-Bali</span><p class="card-why">Fischgrill mit Tischen im Sand. Klingt nach Prospekt, funktioniert trotzdem — Kilopreis vorher bestätigen lassen.</p></div>
+        <div class="card"><span class="card-name">Gili Trawangan, ein Abend</span><span class="card-where">vor Lombok</span><p class="card-why">Zehn Minuten mit dem Boot von Gili Air, und ihr könnt jederzeit zurück. Wohnen würde ich dort nicht.</p></div>
+        <div class="card"><span class="card-name">Gili Meno</span><span class="card-where">vor Lombok</span><p class="card-why">Noch stiller als Gili Air, mit Schildkrötenstation und einer Unterwasserstatue. Als Tagesausflug perfekt.</p></div>
+        <div class="card"><span class="card-name">Djawatan-Wald</span><span class="card-where">bei Banyuwangi</span><p class="card-why">Trompetenbaum-Allee, sieht aus wie Filmkulisse. Genau das Richtige für den Ruhetag vor dem Ijen.</p></div>
+        <div class="card"><span class="card-name">Ratu Boko</span><span class="card-where">bei Prambanan</span><p class="card-why">Palastruine auf dem Hügel gegenüber, mit Blick zurück auf Prambanan. Für den Sonnenuntergang, nicht für die Ruine.</p></div>
+        <div class="card"><span class="card-name">Campuhan Ridge</span><span class="card-where">Ubud</span><p class="card-why">Ein Grat über zwei Flusstälern. Um sechs Uhr schön, um neun eine Prozession in Sportkleidung.</p></div>
+        <div class="card"><span class="card-name">Crystal Bay</span><span class="card-where">Nusa Penida</span><p class="card-why">Der einzige Strand auf Penida, an dem man ohne Kletterei ins Wasser kommt. Für den Sonnenuntergang am Ankunftstag.</p></div>
+      </div>
+    </div>
+
+    <!-- ============ C ============ -->
+    <div class="tier c">
+      <div class="tier-label"><span class="tier-letter">C</span><span class="tier-say">Nur bei Zeit übrig</span></div>
+      <div class="tier-items">
+        <div class="card"><span class="card-name">Ubud</span><span class="card-where">Zentral-Bali</span><p class="card-why">Yoga-Retreats, Wellness und Cafés mit Betonoptik. Als Basis brauchbar, als Ziel für euch beide zu behäbig.</p></div>
+        <div class="card"><span class="card-name">Besakih</span><span class="card-where">Ost-Bali</span><p class="card-why">Balis Muttertempel, riesig und tatsächlich bedeutend — aber ein zäher Spießrutenlauf durch Pflichtguides und Sarongverleih.</p></div>
+        <div class="card"><span class="card-name">Nusa Lembongan</span><span class="card-where">bei Penida</span><p class="card-why">Der zahmere Nachbar. Wenn ihr Penida habt, braucht ihr das nicht.</p></div>
+        <div class="card"><span class="card-name">Sanur</span><span class="card-where">Süd-Bali</span><p class="card-why">Ruhig, flach, gepflegt — und im Wesentlichen ein Fährhafen mit Strandpromenade.</p></div>
+        <div class="card"><span class="card-name">Kuta Lombok</span><span class="card-where">Süd-Lombok</span><p class="card-why">Schöne Buchten, echte Surfszene, aber ein eigener Reisebaustein. Passt nicht in diese 18 Nächte.</p></div>
+        <div class="card"><span class="card-name">Kanto Lampo &amp; Tibumana</span><span class="card-where">bei Ubud</span><p class="card-why">Hübsche Wasserfälle mit Instagram-Warteschlange am Fotofelsen. Nett, aber nichts, wofür man fährt.</p></div>
+        <div class="card"><span class="card-name">Sekumpul</span><span class="card-where">Nord-Bali</span><p class="card-why">Der spektakulärste Wasserfall Balis — und dreimal kassiert, mit Guidezwang und aggressiven Parkwächtern.</p></div>
+        <div class="card"><span class="card-name">Pulau Merah</span><span class="card-where">bei Banyuwangi</span><p class="card-why">Roter Sand, ordentliche Welle, wenig los. Nur liegt es zwei Stunden vom Ijen entfernt in die falsche Richtung.</p></div>
+        <div class="card"><span class="card-name">Surabaya</span><span class="card-where">Ostjava</span><p class="card-why">Nötig als Umsteigepunkt zum Bromo, sonst eine heiße Hafenstadt ohne Grund zum Bleiben.</p></div>
+      </div>
+    </div>
+
+    <!-- ============ D ============ -->
+    <div class="tier d">
+      <div class="tier-label"><span class="tier-letter">D</span><span class="tier-say">Gute PR, wenig dahinter</span></div>
+      <div class="tier-items">
+        <div class="card"><span class="card-name">Tegallalang</span><span class="card-where">bei Ubud</span><p class="card-why">Reisterrassen mit Kassenhäuschen — und an jedem Aussichtspunkt noch mal die Hand auf. Jatiluwih macht dasselbe kostenlos und größer.</p></div>
+        <div class="card"><span class="card-name">Penanjakan 1</span><span class="card-where">Bromo</span><p class="card-why">Der berühmte Aussichtspunkt. Zweihundert Jeeps auf einer Serpentine, damit ihr hinter drei Reihen Handys steht.</p></div>
+        <div class="card"><span class="card-name">Punthuk Setumbu</span><span class="card-where">bei Borobudur</span><p class="card-why">Der „Borobudur-Sonnenaufgang“: hundert Leute im Dunkeln, und drei Kilometer weiter ein Buckel im Dunst.</p></div>
+        <div class="card"><span class="card-name">Monkey Forest</span><span class="card-where">Ubud</span><p class="card-why">Organisierter Diebstahl mit Eintritt, dazu ein reales Tollwutrisiko. Affen seht ihr unterwegs genug.</p></div>
+        <div class="card"><span class="card-name">Tanah Lot</span><span class="card-where">West-Bali</span><p class="card-why">Busparkplatz, dreihundert Meter Souvenirgasse, dann eine Menschenmauer vor einem Felsen. Uluwatu kann das besser.</p></div>
+        <div class="card"><span class="card-name">Kelingking-Abstieg</span><span class="card-where">Nusa Penida</span><p class="card-why">Zwei Stunden Klettern am Bambusgeländer in der Hitze, unten eine Strömung, in der man nicht schwimmt. Die Aussicht ist das Ziel.</p></div>
+        <div class="card"><span class="card-name">Seminyak</span><span class="card-where">Süd-Bali</span><p class="card-why">Teurer als Canggu, langweiliger als Uluwatu, und der Strand ist derselbe wie überall an der Westküste.</p></div>
+        <div class="card"><span class="card-name">Jakarta</span><span class="card-where">Java</span><p class="card-why">Eine gewaltige, faszinierende Stadt — und trotzdem keinen von achtzehn Tagen wert, wenn Java und Bali warten.</p></div>
+        <div class="card"><span class="card-name">Lovina</span><span class="card-where">Nord-Bali</span><p class="card-why">Grauer Strand und ein Ort, der von einer Sache lebt, die man nicht machen sollte — siehe unten.</p></div>
+      </div>
+    </div>
+
+    <!-- ============ F ============ -->
+    <div class="tier f">
+      <div class="tier-label"><span class="tier-letter">F</span><span class="tier-say">Aktiv vermeiden</span></div>
+      <div class="tier-items">
+        <div class="card"><span class="card-name">Lempuyang</span><span class="card-where">Ost-Bali</span><p class="card-why">Ein bis drei Stunden Schlange für ein Foto — und den See darunter gibt es nicht. Das ist ein Spiegel, den ein Angestellter unters Handy hält.</p></div>
+        <div class="card"><span class="card-name">Bali Swing</span><span class="card-where">bei Ubud</span><p class="card-why">Rund 35 Dollar für eine Schaukel über einer Schlucht. Die Schlucht ist umsonst.</p></div>
+        <div class="card"><span class="card-name">Kuta &amp; Legian</span><span class="card-where">Süd-Bali</span><p class="card-why">In achtzehn Tagen gibt es keinen einzigen Grund, dort hinzufahren.</p></div>
+        <div class="card"><span class="card-name">Delfintouren Lovina</span><span class="card-where">Nord-Bali</span><p class="card-why">Dreißig Motorboote umkreisen und verfolgen eine Delfinschule. Für die Tiere Stress, für euch eine Stunde Bootslärm.</p></div>
+        <div class="card"><span class="card-name">Luwak-Kaffeeplantagen</span><span class="card-where">überall auf Bali</span><p class="card-why">Fast jede „Kaffeetour“ hält Schleichkatzen in Einzelkäfigen, um den teuersten Kaffee der Welt zu produzieren. Sagt eurem Fahrer vorher ab.</p></div>
+        <div class="card"><span class="card-name">Elefanten- &amp; Tigerparks</span><span class="card-where">Süd-Bali</span><p class="card-why">Reiten, Füttern, Selfies. Es gibt keine seriöse Version davon auf Bali.</p></div>
+        <div class="card"><span class="card-name">Floating Breakfast</span><span class="card-where">jedes Hotel mit Pool</span><p class="card-why">Kaltes Essen auf einem Tablett im Chlorwasser, vier Minuten fotografiert und dann weggeschoben.</p></div>
+        <div class="card"><span class="card-name">Schwimmen zwischen den Gilis</span><span class="card-where">vor Lombok</span><p class="card-why">Sieht machbar aus, ist es nicht. Die Strömung dort hat mehrere Menschen das Leben gekostet. Nehmt das Boot.</p></div>
+      </div>
+    </div>
+
+  </div>
+
+  <section>
+    <span class="sec-k">Beweglich</span>
+    <h2>Diese Orte wechseln die Liga</h2>
+    <p class="lede">Bei einigen entscheidet nicht der Ort, sondern die Uhrzeit oder der Monat. Das ist der wichtigste Hebel, den ihr habt — und er kostet nur einen Wecker.</p>
+    <div class="movers">
+      <div class="mover">
+        <span class="mover-name">Kelingking</span>
+        <div class="shift"><span class="pip a">A</span><span class="arrow">→</span><span class="pip d">D</span></div>
+        <p class="mover-why">Um 06:30 seid ihr allein an der Klippe. Ab 10:00 landen die Tagesboote aus Bali und es wird eine Schlange fürs Foto.</p>
+      </div>
+      <div class="mover">
+        <span class="mover-name">Borobudur</span>
+        <div class="shift"><span class="pip s">S</span><span class="arrow">→</span><span class="pip c">C</span></div>
+        <p class="mover-why">Erster Slot an einem Werktag gegen Samstagmittag mit Aufstiegsverbot, weil ihr nur das Gelände-Ticket bekommen habt.</p>
+      </div>
+      <div class="mover">
+        <span class="mover-name">Bromo</span>
+        <div class="shift"><span class="pip s">S</span><span class="arrow">→</span><span class="pip c">C</span></div>
+        <p class="mover-why">September gegen Anfang Juli. In den indonesischen Schulferien ist es derselbe Berg mit dem dreifachen Verkehr.</p>
+      </div>
+      <div class="mover">
+        <span class="mover-name">Tirta Empul</span>
+        <div class="shift"><span class="pip b">B</span><span class="arrow">→</span><span class="pip d">D</span></div>
+        <p class="mover-why">Um sieben steht ihr zwischen Balinesen, die zum Beten da sind. Ab zehn zwischen Leuten, die auf ihre Nummer warten.</p>
+      </div>
+      <div class="mover">
+        <span class="mover-name">Kawah Ijen</span>
+        <div class="shift"><span class="pip s">S</span><span class="arrow">→</span><span class="pip f">F</span></div>
+        <p class="mover-why">In der Trockenzeit das Beste der Reise. Zwischen Dezember und März regelmäßig gesperrt, und dann steht ihr umsonst um Mitternacht am Tor.</p>
+      </div>
+      <div class="mover">
+        <span class="mover-name">Canggu</span>
+        <div class="shift"><span class="pip a">A</span><span class="arrow">→</span><span class="pip d">D</span></div>
+        <p class="mover-why">Morgens im Wasser bei Batu Bolong. Mittags im Verkehr auf der Hauptstraße, für zwei Kilometer vierzig Minuten.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Zusammengefasst</span>
+    <h2>Drei Muster in dieser Liste</h2>
+    <div class="verdict">
+      <div class="verdict-item">
+        <h3>Alles Berühmte ist zwei Ligen tiefer als sein Ruf</h3>
+        <p>Penanjakan, Tegallalang, Lempuyang, Tanah Lot — die meistfotografierten Orte Balis stehen alle unten. Nicht weil sie hässlich wären, sondern weil das, wofür man ansteht, in keinem Verhältnis zum Anstehen steht.</p>
+      </div>
+      <div class="verdict-item">
+        <h3>Der Aufwand entscheidet, nicht die Schönheit</h3>
+        <p>Diamond Beach steht über Kelingking-Abstieg, obwohl beide dieselbe Küste sind. Der Unterschied ist, was sie kosten: anderthalb Stunden schlechte Straße gegen zwei Stunden Klettern in der Mittagshitze.</p>
+      </div>
+      <div class="verdict-item">
+        <h3>Unter Wasser gibt es kein D</h3>
+        <p>Kein einziger Tauch- oder Schnorchelplatz ist unter B gelandet. Das ist kein Zufall: Indonesien liegt im Korallendreieck, und dort ist selbst der durchschnittliche Riffabschnitt besser als fast alles im Rest der Welt.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Tier List zum Reiseplan Java &amp; Bali · Stand August 2026 · sortiert für zwei Reisende Anfang zwanzig im September.
+    <br><a class="sitenav" href="./index.html">Plan A &middot; Reiseplan</a><a class="sitenav" href="./fuer-zwei.html">Nur das, was bleibt</a><a class="sitenav" href="./route-b.html">Route B</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
