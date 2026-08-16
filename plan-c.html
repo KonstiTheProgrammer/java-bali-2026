@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Plan C: drei gebuchte Pakete statt Eigenregie — Merapi bei Nacht, Tumpak Sewu mit Bromo und Ijen, und das Boot von Komodo nach Lombok.">
+<title>Plan C · Drei Pakete, eine Reise</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { max-width: 100%; height: auto; }
+  h1, h2, h3, h4, p, ol, ul, table, figure { margin: 0; }
+  table { border-collapse: collapse; }
+  .sitenav {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+  .sitenav + .sitenav { margin-left: 22px; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --ground:   #E7EAE4;
+    --surface:  #F3F5F0;
+    --sunken:   #D7DCD3;
+    --ink:      #13201B;
+    --ink-soft: #4A5951;
+    --ink-faint:#7E8D84;
+    --rule:     #C1CAC0;
+    --rule-soft:#D2D9D0;
+    --signal:   #B44A14;
+    --sea:      #11635A;
+
+    --display: "American Typewriter", Rockwell, "Courier New", Courier, serif;
+    --body: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, "SF Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:   #0E1614;
+      --surface:  #17211E;
+      --sunken:   #080E0C;
+      --ink:      #E3E9E3;
+      --ink-soft: #96A69D;
+      --ink-faint:#6C7C73;
+      --rule:     #26332F;
+      --rule-soft:#1C2724;
+      --signal:   #F5894A;
+      --sea:      #4FB5A2;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0E1614; --surface:#17211E; --sunken:#080E0C; --ink:#E3E9E3;
+    --ink-soft:#96A69D; --ink-faint:#6C7C73; --rule:#26332F; --rule-soft:#1C2724;
+    --signal:#F5894A; --sea:#4FB5A2;
+  }
+  :root[data-theme="light"] {
+    --ground:#E7EAE4; --surface:#F3F5F0; --sunken:#D7DCD3; --ink:#13201B;
+    --ink-soft:#4A5951; --ink-faint:#7E8D84; --rule:#C1CAC0; --rule-soft:#D2D9D0;
+    --signal:#B44A14; --sea:#11635A;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 22px 92px; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { padding: 52px 0 28px; border-bottom: 3px double var(--ink); }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    color: var(--signal);
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(36px, 7vw, 62px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin: 15px 0 0;
+    text-wrap: balance;
+  }
+  .standfirst { margin: 20px 0 0; max-width: 58ch; font-size: 18px; color: var(--ink-soft); }
+
+  .strip { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--rule); }
+  .strip-cell { flex: 1 1 140px; padding: 15px 16px 17px 0; display: flex; flex-direction: column; gap: 3px; }
+  .strip-cell + .strip-cell { border-left: 1px solid var(--rule-soft); padding-left: 16px; }
+  .strip-k { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); }
+  .strip-v { font-family: var(--display); font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* ---------- sections ---------- */
+
+  section { padding-top: 56px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(25px, 4.4vw, 34px);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .sec-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sea); display: block; margin-bottom: 10px; }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin: 14px 0 30px; }
+
+  /* ---------- ticket stubs ---------- */
+
+  .tickets { display: flex; flex-direction: column; gap: 20px; }
+  .ticket {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+  }
+  .stub {
+    border-right: 2px dashed var(--rule);
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    background: var(--sunken);
+  }
+  .stub-n { font-family: var(--display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--signal); }
+  .stub-t { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); line-height: 1.3; }
+  .tk-body { padding: 17px 20px 19px; }
+  .tk-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+  .tk-name { font-family: var(--display); font-weight: 700; font-size: 21px; line-height: 1.2; margin: 0; }
+  .tk-op { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .tk-meta {
+    display: flex; flex-wrap: wrap; gap: 4px 16px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
+    color: var(--ink-soft); margin: 8px 0 10px;
+    font-variant-numeric: tabular-nums;
+  }
+  .tk-meta .eur { color: var(--signal); }
+  .tk-body p { margin: 0; color: var(--ink-soft); font-size: 15.5px; max-width: 62ch; }
+  .tk-body p + p { margin-top: 9px; }
+  .tk-body p strong { color: var(--ink); font-weight: 600; }
+  .tk-inc {
+    margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--rule-soft);
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--ink-faint); line-height: 1.7;
+  }
+  .tk-inc b { color: var(--sea); font-weight: 400; }
+  .tk-link { display: inline-block; margin-top: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; color: var(--signal); }
+  @media (max-width: 560px) {
+    .ticket { grid-template-columns: 1fr; }
+    .stub { flex-direction: row; border-right: 0; border-bottom: 2px dashed var(--rule); padding: 10px 14px; justify-content: flex-start; gap: 12px; }
+    .stub-n { font-size: 22px; }
+  }
+
+  /* ---------- chain ---------- */
+
+  .chain { border-top: 2px solid var(--ink); }
+  .cd {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 3px 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .cd.pkg { background: linear-gradient(to right, var(--surface), transparent 70%); }
+  .cd-d { font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; color: var(--ink-soft); padding-top: 2px; }
+  .cd-d span { display: block; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.07em; text-transform: uppercase; }
+  .cd-t { font-family: var(--display); font-weight: 700; font-size: 17px; line-height: 1.25; }
+  .cd-n { grid-column: 2; font-size: 14.5px; color: var(--ink-soft); max-width: 64ch; }
+  .badge {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.11em; text-transform: uppercase;
+    border: 1px solid var(--sea); color: var(--sea); padding: 2px 6px; margin-left: 8px; white-space: nowrap;
+  }
+  @media (max-width: 560px) { .cd { grid-template-columns: 1fr; } .cd-n { grid-column: 1; } }
+
+  /* ---------- trade ---------- */
+
+  .trade { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0; border-top: 1px solid var(--rule); }
+  .tcol { padding: 22px 0; }
+  .tcol + .tcol { border-top: 1px solid var(--rule-soft); }
+  @media (min-width: 660px) {
+    .tcol + .tcol { border-top: 0; border-left: 1px solid var(--rule-soft); padding-left: 30px; }
+    .tcol:first-child { padding-right: 30px; }
+  }
+  .tcol h3 { font-family: var(--display); font-weight: 700; font-size: 19px; margin: 0 0 12px; }
+  .tcol.plus h3 { color: var(--sea); }
+  .tcol.minus h3 { color: var(--signal); }
+  .tcol ul { margin: 0; padding-left: 17px; color: var(--ink-soft); font-size: 15.5px; }
+  .tcol li { margin-bottom: 7px; }
+
+  /* ---------- risks ---------- */
+
+  .risks { border-top: 3px solid var(--signal); }
+  .risk { padding: 21px 0; border-bottom: 1px solid var(--rule-soft); }
+  .risk h3 { font-family: var(--display); font-weight: 700; font-size: 19px; margin: 0 0 6px; color: var(--signal); }
+  .risk p { margin: 0; color: var(--ink-soft); max-width: 66ch; }
+  .risk p + p { margin-top: 8px; }
+  .risk p strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- money ---------- */
+
+  .scroller { overflow-x: auto; }
+  table { width: 100%; min-width: 430px; }
+  th, td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule-soft); font-size: 15px; }
+  th { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); font-weight: 400; border-bottom-color: var(--rule); }
+  td { color: var(--ink-soft); }
+  td:first-child { color: var(--ink); }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; padding-right: 0; white-space: nowrap; color: var(--ink); }
+  tr.total td { border-bottom: 0; border-top: 3px double var(--ink); font-weight: 700; padding-top: 13px; }
+  tr.total td.num { color: var(--signal); }
+
+  footer {
+    margin-top: 64px; padding-top: 19px; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); line-height: 1.85;
+  }
+  a { color: var(--signal); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--sea); outline-offset: 3px; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="kicker">Dritte Variante · 3.–21. September 2026</span>
+    <h1>Plan C<br>Drei Pakete, eine Reise</h1>
+    <p class="standfirst">Statt alles selbst zu fädeln, hängt ihr drei fertig gebuchte Blöcke aneinander. Der große Gewinn: Komodo kommt zurück — weil das Boot nicht zurückfliegt, sondern in Lombok ankommt.</p>
+  </header>
+
+  <div class="strip">
+    <div class="strip-cell"><span class="strip-k">Nächte</span><span class="strip-v">18</span></div>
+    <div class="strip-cell"><span class="strip-k">Gebuchte Pakete</span><span class="strip-v">3</span></div>
+    <div class="strip-cell"><span class="strip-k">Nächte darin</span><span class="strip-v">6</span></div>
+    <div class="strip-cell"><span class="strip-k">Selbst zu planen</span><span class="strip-v">12</span></div>
+    <div class="strip-cell"><span class="strip-k">Am Boden, zu zweit</span><span class="strip-v">2.400 €</span></div>
+  </div>
+
+  <section>
+    <span class="sec-k">Die Bausteine</span>
+    <h2>Was ihr bucht</h2>
+    <p class="lede">Drei Pakete decken zehn der achtzehn Tage ab und nehmen euch dabei die drei nervigsten Planungsprobleme ab: die Java-Vulkankette, das Ijen-Attest und den Weg nach Komodo.</p>
+
+    <div class="tickets">
+
+      <div class="ticket">
+        <div class="stub"><span class="stub-n">01</span><span class="stub-t">6–7 h<br>abends</span></div>
+        <div class="tk-body">
+          <div class="tk-head"><h3 class="tk-name">Merapi bei Nacht</h3><span class="tk-op">GetYourGuide · 4,7 ★ · 218 Bew.</span></div>
+          <div class="tk-meta"><span class="eur">ab 31 € p. P.</span><span>Kleingruppe, max. 10</span><span>Abholung 19:00</span><span>5. September</span></div>
+          <p>Abholung um sieben, eine Stunde Fahrt, dann steht ihr im Dunkeln am Aussichtspunkt und seht <strong>glühende Lava den Hang herunterkommen</strong>. Optional der Aufstieg auf den Turgo-Hügel auf 1.000 Meter, von wo aus ihr den Vulkan und darunter die Lichter von Yogyakarta habt.</p>
+          <p><strong>Wichtig zum Link, den ihr geschickt habt:</strong> die Adresse enthält „auf dem Gipfel“, das Produkt heißt aber „Lava-Beobachtung“. Und das ist gut so — siehe die Risiken weiter unten.</p>
+          <div class="tk-inc"><b>Drin:</b> Abholung, Fahrer, Guide, Eintritt · <b>Storno:</b> bis 24 h vorher kostenlos</div>
+          <a class="tk-link" href="https://www.getyourguide.com/de-de/yogyakarta-l349/vulkan-yogyakarta-der-berg-merapi-auf-dem-gipfel-lava-ansicht-t863541/" target="_blank" rel="noopener noreferrer">Zur Tour &rarr;</a>
+        </div>
+      </div>
+
+      <div class="ticket">
+        <div class="stub"><span class="stub-n">02</span><span class="stub-t">4 Tage<br>3 Nächte</span></div>
+        <div class="tk-body">
+          <div class="tk-head"><h3 class="tk-name">Tumpak Sewu · Bromo · Ijen</h3><span class="tk-op">YKExplore · 4,6 ★ · 271 Bew.</span></div>
+          <div class="tk-meta"><span class="eur">ab 117 € p. P. <s>156 €</s></span><span>Yogyakarta → Bali</span><span>7.–10. September</span></div>
+          <p>Der Baustein, der am meisten abnimmt. Ab Yogyakarta im Van nach Ostjava, dann <strong>Tumpak Sewu</strong> — der Wasserfall, den viele für den schönsten Indonesiens halten und der in Plan A und B gar nicht vorkam —, danach Bromo zum Sonnenaufgang, danach Ijen. Endet nicht irgendwo, sondern <strong>an eurem Hotel auf Bali</strong>: Pemuteran, Ubud, Canggu, Kuta oder Uluwatu, Transfer inklusive.</p>
+          <p>Damit fallen auf einen Schlag weg: der Flug nach Surabaya, vier Fahrertage, die Fähre, das Bromo-Onlineticket, das Ijen-Ticket — und das ärztliche Attest, das sonst ihr in Banyuwangi besorgen müsstet.</p>
+          <div class="tk-inc"><b>Drin:</b> 3 Nächte, Frühstück Tag 2–4, sämtliche Eintritte und Genehmigungen, Bromo-Jeep, Ranger an allen drei Orten, <b>Gasmaske, Augenschutz und Ijen-Gesundheitsbescheinigung</b>, Transfer bis Bali · <b>Nicht drin:</b> Mittag- und Abendessen, Versicherung, Trinkgeld 50.000 IDR p. P.</div>
+          <a class="tk-link" href="https://www.getyourguide.com/de-de/yogyakarta-l349/yogyakarta-surabaya-oder-malang-tumpak-sewu-bromo-ijen-tour-t451088/" target="_blank" rel="noopener noreferrer">Zur Tour &rarr;</a>
+        </div>
+      </div>
+
+      <div class="ticket">
+        <div class="stub"><span class="stub-n">03</span><span class="stub-t">4 Tage<br>3 Nächte</span></div>
+        <div class="tk-body">
+          <div class="tk-head"><h3 class="tk-name">Komodo → Lombok, per Boot</h3><span class="tk-op">Wanua Adventure</span></div>
+          <div class="tk-meta"><span class="eur">Deck 200 € · Kabine 228 € p. P.</span><span>Labuan Bajo → Labuhan Lombok</span><span>13.–16. September</span></div>
+          <p>Das Stück, das die ganze Reise umbaut. Abfahrt <strong>sonntags, dienstags, donnerstags und samstags um 07:30</strong> — vier Tage über das Meer nach Westen, und ihr landet genau dort, wo eure Gilis anfangen.</p>
+          <p><strong>Tag 1</strong> Loh Buaya auf Rinca: das ist die Rangerstation, an der ihr die Warane seht. Danach Korallenpflanzen, ein Dorf auf Rinca, und zum Sonnenuntergang Kalong Island, wo Zehntausende Flughunde gleichzeitig ausfliegen. <strong>Tag 2</strong> Padar zum Sonnenaufgang — der Ausblick, den ihr von jedem Indonesien-Poster kennt — dann Pink Beach und Gili Banta, danach die lange Nachtfahrt. <strong>Tag 3</strong> Moyo mit Wasserfall und Dschungel. <strong>Tag 4</strong> Ankunft gegen acht, Shuttle nach Bangsal oder Kuta Lombok.</p>
+          <div class="tk-inc"><b>Drin:</b> Nationalparkgebühren Komodo, 3 Mahlzeiten täglich, Kaffee/Tee/Wasser, Schnorchelausrüstung, Shuttle bis Bangsal · <b>Boot:</b> 20–25 m, 25–45 Passagiere, 5–6 Crew</div>
+          <a class="tk-link" href="https://wanuaadventure.com/4days-3nights-flores-to-lombok-island/" target="_blank" rel="noopener noreferrer">Zum Anbieter &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Der Ablauf</span>
+    <h2>Achtzehn Nächte am Stück</h2>
+    <p class="lede">Grau hinterlegt heißt: läuft in einem gebuchten Paket, ihr müsst dafür weder Unterkunft noch Transport organisieren.</p>
+
+    <div class="chain">
+      <div class="cd"><span class="cd-d">3.9.<span>Do</span></span><span class="cd-t">Jakarta</span><span class="cd-n">Landung 20:35, Flughafenhotel. Sonst nichts.</span></div>
+      <div class="cd"><span class="cd-d">4.9.<span>Fr</span></span><span class="cd-t">Nach Yogyakarta</span><span class="cd-n">Morgenflug CGK → YIA, Airport-Zug in die Stadt. Nachmittags Kraton und Malioboro.</span></div>
+      <div class="cd"><span class="cd-d">5.9.<span>Sa</span></span><span class="cd-t">Borobudur, Prambanan — und nachts Merapi <span class="badge">Paket 01</span></span><span class="cd-n">Erster Slot am Borobudur, nachmittags Prambanan im Abendlicht. Um 19:00 Abholung zur Lavabeobachtung, zurück tief in der Nacht.</span></div>
+      <div class="cd"><span class="cd-d">6.9.<span>So</span></span><span class="cd-t">Ausschlafen</span><span class="cd-n">Bewusst leer. Ihr wart die halbe Nacht am Vulkan und startet morgen früh die große Tour.</span></div>
+      <div class="cd pkg"><span class="cd-d">7.–10.9.<span>Mo–Do</span></span><span class="cd-t">Tumpak Sewu, Bromo, Ijen <span class="badge">Paket 02</span></span><span class="cd-n">Vier Tage, drei Nächte, alles gestellt. Ankunft am 10. an eurem Hotel auf Bali.</span></div>
+      <div class="cd"><span class="cd-d">10.–11.9.<span>Do–Fr</span></span><span class="cd-t">Bali, zwei Nächte Pause</span><span class="cd-n">Nach zwei Nachtaufstiegen in vier Tagen ist das kein Luxus. Ubud oder Canggu, je nachdem wo ihr euch absetzen lasst.</span></div>
+      <div class="cd"><span class="cd-d">12.9.<span>Sa</span></span><span class="cd-t">Flug nach Labuan Bajo</span><span class="cd-n">DPS → LBJ, gut anderthalb Stunden. Nacht im Ort, das Boot fährt morgens um halb acht.</span></div>
+      <div class="cd pkg"><span class="cd-d">13.–16.9.<span>So–Mi</span></span><span class="cd-t">Boot nach Lombok <span class="badge">Paket 03</span></span><span class="cd-n">Drei Nächte an Bord. Warane, Padar, Pink Beach, Moyo. Ankunft am 16. gegen acht Uhr in Labuhan Lombok.</span></div>
+      <div class="cd"><span class="cd-d">16.–18.9.<span>Mi–Fr</span></span><span class="cd-t">Gili Air</span><span class="cd-n">Shuttle nach Bangsal, kurze Überfahrt, mittags seid ihr da. Keine Autos, Schildkröten, Fahrrad. Drei Nächte.</span></div>
+      <div class="cd"><span class="cd-d">19.–20.9.<span>Sa–So</span></span><span class="cd-t">Zurück nach Bali</span><span class="cd-n">Schnellboot Gili Air → Sanur, rund drei Stunden. Zwei letzte Nächte, sinnvollerweise im Süden nah am Flughafen.</span></div>
+      <div class="cd"><span class="cd-d">21.9.<span>Mo</span></span><span class="cd-t">Heimweg</span><span class="cd-n">DPS → CGK gegen 16:00 mit Garuda, Terminal 3. Etihad geht um 00:05.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Gegenüber Route B</span>
+    <h2>Was ihr tauscht</h2>
+    <div class="trade">
+      <div class="tcol plus">
+        <h3>Dazu</h3>
+        <ul>
+          <li><strong>Komodowarane</strong> auf Rinca — das einzige Ziel, das ich vorher als „andere Reise“ abgeschrieben hatte</li>
+          <li><strong>Padar</strong> zum Sonnenaufgang</li>
+          <li><strong>Pink Beach</strong> und Moyo</li>
+          <li><strong>Kalong Island:</strong> Zehntausende Flughunde, die bei Sonnenuntergang gleichzeitig starten</li>
+          <li><strong>Tumpak Sewu</strong>, der in beiden anderen Plänen fehlte</li>
+          <li><strong>Merapi mit fließender Lava</strong> bei Nacht</li>
+          <li>Zehn Tage, an denen euch jemand anders durch die Logistik fährt</li>
+        </ul>
+      </div>
+      <div class="tcol minus">
+        <h3>Dafür weg</h3>
+        <ul>
+          <li><strong>Der Tauchschein.</strong> Auf Gili Air bleiben nur drei Nächte, der Kurs braucht drei volle Tage. Passt nicht.</li>
+          <li><strong>Amed und das Liberty-Wrack</strong> — der beste Tauch- und Schnorchelplatz der Route B</li>
+          <li><strong>Menjangen und Pemuteran</strong></li>
+          <li><strong>Surfen in Canggu</strong></li>
+          <li>Freiheit: bei drei gebuchten Paketen liegt der halbe Ablauf fest, inklusive Weckzeiten</li>
+          <li>Ein zusätzlicher Inlandsflug und damit ein zusätzliches Ausfallrisiko</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Ehrlich dazu</span>
+    <h2>Fünf Dinge, die ihr wissen solltet</h2>
+
+    <div class="risks">
+
+      <div class="risk">
+        <h3>Der Flug nach Labuan Bajo ist jetzt tragend</h3>
+        <p>Der Lewotobi Laki-Laki auf Flores steht seit Dezember 2024 auf Alarmstufe III und ist 2026 mehrfach ausgebrochen — im April und wieder am 5. Juni, mit geschlossenen Flughäfen auf Flores und gestrichenen Flügen bis Bali. In Plan C hängt nicht mehr ein Ausflug daran, sondern <strong>die halbe Reise</strong>: fällt der Flug am 12.9. aus, fällt auch das Boot aus und mit ihm der Weg nach Lombok.</p>
+        <p>Das ist beherrschbar, aber nur bewusst: Reiserücktritt für den Bootspreis prüfen, und einen Plan im Kopf haben, wie ihr sonst nach Lombok kommt (Direktflug DPS → Praya). <strong>Bucht den Flug erstattbar</strong>, auch wenn er dann 20 Euro mehr kostet.</p>
+      </div>
+
+      <div class="risk">
+        <h3>Das Boot ist ein Backpackerboot, kein Liveaboard</h3>
+        <p>20 bis 25 Meter, <strong>25 bis 45 Passagiere</strong>, fünf bis sechs Crew. Deckklasse heißt Matratze an Deck unter freiem Himmel; Kabine heißt kleiner Raum mit Ventilator. Für 28 Euro mehr pro Person würde ich die Kabine nehmen.</p>
+        <p>Dazu gehört ehrlich: zwischen Komodo und Sumbawa liegt eine <strong>Nachtfahrt von 14 bis 17 Stunden über offene See</strong>. In der Region hat es Unfälle mit überladenen oder schlecht gewarteten Booten gegeben. Fragt vor der Buchung nach Rettungswesten für alle, nach dem Baujahr und danach, was bei Motorschaden passiert. Wer seekrank wird, sollte Tabletten dabeihaben — nicht erst an Bord.</p>
+      </div>
+
+      <div class="risk">
+        <h3>Merapi: dass der Link „Gipfel“ heißt, ist ein Etikettenfehler — zum Glück</h3>
+        <p>Der Merapi steht auf Alarmstufe III und produziert laufend Lawinenabgänge; allein am 18. Mai 2026 zwanzig Stück in sechs Stunden. <strong>Das Besteigen ist offiziell verboten</strong>, und zwischen Ende 2025 und Juli 2026 wurden 67 Menschen belangt, die trotzdem in die Sperrzone gegangen sind.</p>
+        <p>Die Tour, die ihr verlinkt habt, heißt in Wirklichkeit „Lava-Beobachtung“ und geht zu einem Aussichtspunkt, nicht auf den Gipfel. Genau richtig. <strong>Falls euch jemand vor Ort einen Gipfelaufstieg anbietet — auch „von Selo aus, kein Problem“ — lasst die Finger davon.</strong> Das ist illegal, unversichert und an einem Vulkan mit täglichen Abgängen.</p>
+      </div>
+
+      <div class="risk">
+        <h3>Komodo hat seit April 2026 ein Kontingent</h3>
+        <p>Der Nationalpark lässt nur noch <strong>1.000 Besucher pro Tag</strong> zu, verteilt auf Padar, Rinca, Komodo und 23 Tauchplätze; Genehmigungen müssen vorab gebucht werden. Wanua schreibt, die Parkgebühren seien inklusive — lasst euch aber schriftlich bestätigen, dass auch das <strong>Kontingent für euer Datum</strong> gesichert ist, und nicht nur die Gebühr.</p>
+      </div>
+
+      <div class="risk">
+        <h3>Im Bootsprogramm steckt ein Fehler</h3>
+        <p>Der Anbieter listet für Tag 4, kurz vor Lombok, einen Sonnenaufgangsstopp auf <strong>Kanawa Island</strong>. Kanawa liegt aber direkt vor Labuan Bajo, also am Anfang der Strecke, nicht am Ende. Vermutlich ein stehengebliebener Textbaustein aus dem Programm in der Gegenrichtung.</p>
+        <p>Kein Grund, nicht zu buchen — aber fragt beim Anbieter nach, was an Tag 4 tatsächlich angefahren wird. Die Antwort sagt euch nebenbei einiges darüber, wie sorgfältig der Laden arbeitet.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Rechnung</span>
+    <h2>Was Plan C kostet</h2>
+    <p class="lede">Für zwei Personen, alles nach der Landung. Die Pakete sehen teuer aus, enthalten aber sechs Übernachtungen und fast allen Transport — unterm Strich liegt Plan C damit <strong>unter Route B mit Tauchschein</strong> und ungefähr gleichauf mit Route B ohne.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Posten</th><th>Detail</th><th class="num">für 2</th></tr></thead>
+        <tbody>
+          <tr><td>Visum &amp; Bali-Abgabe</td><td>e-VOA plus Love-Bali-Levy</td><td class="num">~ 74 €</td></tr>
+          <tr><td>Inlandsflüge</td><td>CGK–YIA, DPS–LBJ, DPS–CGK</td><td class="num">~ 380 €</td></tr>
+          <tr><td>Paket 01 · Merapi</td><td>Lava-Beobachtung, abends</td><td class="num">~ 62 €</td></tr>
+          <tr><td>Paket 02 · Java-Vulkane</td><td>4 Tage, 3 Nächte, alles inklusive</td><td class="num">~ 320 €</td></tr>
+          <tr><td>Paket 03 · Komodo-Boot</td><td>4 Tage, 3 Nächte, Kabinenklasse</td><td class="num">~ 456 €</td></tr>
+          <tr><td>Borobudur &amp; Prambanan</td><td>Aufstiegsticket plus Eintritt</td><td class="num">~ 102 €</td></tr>
+          <tr><td>Boot Gili Air → Sanur</td><td>eine Überfahrt</td><td class="num">~ 44 €</td></tr>
+          <tr><td>Unterkunft</td><td>12 Nächte (6 stecken in den Paketen)</td><td class="num">~ 480 €</td></tr>
+          <tr><td>Essen &amp; Rest</td><td>~ 30 €/Tag, an Bord inklusive</td><td class="num">~ 450 €</td></tr>
+          <tr class="total"><td>Summe</td><td>ohne Puffer</td><td class="num">~ 2.370 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Reihenfolge</span>
+    <h2>Was zuerst gebucht werden muss</h2>
+    <p class="lede">Bei siebzehn Tagen bis zum Abflug ist die Reihenfolge wichtiger als die Vollständigkeit.</p>
+    <div class="chain">
+      <div class="cd"><span class="cd-d">Sofort</span><span class="cd-t">Das Boot</span><span class="cd-n">Feste Abfahrtstage, begrenzte Plätze, und daran hängt der gesamte zweite Teil. Erst wenn der 13.9. bestätigt ist, buchst du den Flug dorthin.</span></div>
+      <div class="cd"><span class="cd-d">Sofort</span><span class="cd-t">Flug DPS → Labuan Bajo</span><span class="cd-n">Erstattbar buchen. Am 12.9., nicht am Abfahrtsmorgen.</span></div>
+      <div class="cd"><span class="cd-d">Sofort</span><span class="cd-t">Borobudur-Slot</span><span class="cd-n">1.200 Plätze pro Tag, ein bis zwei Wochen Vorlauf. Der engste Posten überhaupt.</span></div>
+      <div class="cd"><span class="cd-d">Diese Woche</span><span class="cd-t">Paket 02, YKExplore</span><span class="cd-n">Start Yogyakarta am 7.9., Variante mit 4 Tagen und 3 Nächten. Storno bis 24 h vorher kostenlos, also ruhig früh festmachen.</span></div>
+      <div class="cd"><span class="cd-d">Diese Woche</span><span class="cd-t">Reiseversicherung</span><span class="cd-n">Auslandskranken plus Rücktransport. Ohne Tauchkurs entfällt die Tauchdeckung, dafür gehört jetzt eine Reiserücktrittsversicherung für die Pakete dazu.</span></div>
+      <div class="cd"><span class="cd-d">Bis 22.8.</span><span class="cd-t">Unterkünfte</span><span class="cd-n">Jakarta 1, Yogyakarta 3, Bali 2, Labuan Bajo 1, Gili Air 3, Bali 2. Zwölf Nächte statt achtzehn.</span></div>
+      <div class="cd"><span class="cd-d">Bis 22.8.</span><span class="cd-t">Paket 01, Merapi</span><span class="cd-n">Für den Abend des 5.9., Kleingruppe mit maximal zehn Plätzen.</span></div>
+      <div class="cd"><span class="cd-d">Bis 29.8.</span><span class="cd-t">e-VOA und Bali-Abgabe</span><span class="cd-n">Beides online, beides in Minuten erledigt.</span></div>
+      <div class="cd"><span class="cd-d">31.8.–1.9.</span><span class="cd-t">Arrival Card, Check-in</span><span class="cd-n">Einreisekarte frühestens drei Tage vorher. Etihad-Check-in ab 1.9., 16:30.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    Plan C · Stand August 2026 · Preise gerundet, Kurs ~17.500 IDR je Euro.<br>
+    Preise und Abfahrtstage der Pakete vor der Buchung auf den Anbieterseiten gegenprüfen.
+      <br><a class="sitenav" href="./index.html">Plan A</a><a class="sitenav" href="./route-b.html">Route B</a><a class="sitenav" href="./buchungen.html">Buchungsliste</a><a class="sitenav" href="./fuer-zwei.html">Was bleibt</a><a class="sitenav" href="./tierlist.html">Tier List</a>
+  </footer>
+
+</div>
+</body>
+</html>
