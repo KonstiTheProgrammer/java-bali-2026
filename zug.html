@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Wo ihr auf Java statt zu fliegen den Zug nehmen könnt: Fahrpläne, Klassen, Preise und wie man als Ausländer überhaupt bucht.">
+<title>Mit dem Zug über Java</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { max-width: 100%; height: auto; }
+  h1, h2, h3, h4, p, ol, ul, table, figure { margin: 0; }
+  table { border-collapse: collapse; }
+  .sitenav {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+  .sitenav + .sitenav { margin-left: 22px; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --ground:   #E4E7EB;
+    --surface:  #F1F3F6;
+    --sunken:   #D3D8DE;
+    --ink:      #14181E;
+    --ink-soft: #4C545E;
+    --ink-faint:#818A95;
+    --rule:     #BFC6CE;
+    --rule-soft:#D1D7DD;
+    --signal:   #A31A26;
+    --amber:    #8A5D00;
+
+    --display: Copperplate, "Copperplate Gothic Light", "Trajan Pro", Georgia, serif;
+    --body: "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, "SF Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:   #0E1116;
+      --surface:  #171C23;
+      --sunken:   #080A0E;
+      --ink:      #E4E8EE;
+      --ink-soft: #98A2AE;
+      --ink-faint:#6C7683;
+      --rule:     #262D36;
+      --rule-soft:#1B2128;
+      --signal:   #F2606B;
+      --amber:    #E7B24C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0E1116; --surface:#171C23; --sunken:#080A0E; --ink:#E4E8EE;
+    --ink-soft:#98A2AE; --ink-faint:#6C7683; --rule:#262D36; --rule-soft:#1B2128;
+    --signal:#F2606B; --amber:#E7B24C;
+  }
+  :root[data-theme="light"] {
+    --ground:#E4E7EB; --surface:#F1F3F6; --sunken:#D3D8DE; --ink:#14181E;
+    --ink-soft:#4C545E; --ink-faint:#818A95; --rule:#BFC6CE; --rule-soft:#D1D7DD;
+    --signal:#A31A26; --amber:#8A5D00;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 22px 92px; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { padding: 52px 0 26px; border-bottom: 2px solid var(--ink); }
+  .kicker { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--signal); }
+  h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(30px, 6vw, 54px);
+    line-height: 1.08;
+    letter-spacing: 0.02em;
+    margin: 16px 0 0;
+    text-wrap: balance;
+  }
+  .standfirst { margin: 20px 0 0; max-width: 60ch; font-size: 17.5px; color: var(--ink-soft); }
+
+  /* ---------- sections ---------- */
+
+  section { padding-top: 54px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(21px, 3.6vw, 30px);
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+  .sec-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 10px; }
+  .lede { color: var(--ink-soft); max-width: 62ch; margin: 14px 0 28px; }
+
+  /* ---------- verdict per leg ---------- */
+
+  .legs { border-top: 2px solid var(--ink); }
+  .leg { padding: 20px 0; border-bottom: 1px solid var(--rule-soft); }
+  .leg-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 14px; }
+  .leg-name { font-family: var(--display); font-size: 19px; letter-spacing: 0.02em; margin: 0; }
+  .tag {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 2px 7px; border: 1px solid currentColor; white-space: nowrap;
+  }
+  .tag.yes { color: var(--amber); }
+  .tag.no  { color: var(--ink-faint); }
+  .leg p { margin: 9px 0 0; color: var(--ink-soft); font-size: 15.5px; max-width: 66ch; }
+  .leg p strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- timetable ---------- */
+
+  .board { margin-top: 22px; border: 1px solid var(--rule); background: var(--surface); }
+  .board-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px;
+    padding: 12px 16px; border-bottom: 1px solid var(--rule); background: var(--sunken);
+  }
+  .board-route { font-family: var(--display); font-size: 16px; letter-spacing: 0.03em; }
+  .board-sub { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .scroller { overflow-x: auto; }
+  table { width: 100%; min-width: 460px; }
+  th, td { text-align: left; padding: 9px 16px; border-bottom: 1px solid var(--rule-soft); }
+  th {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 400; border-bottom-color: var(--rule);
+  }
+  td { font-size: 15px; color: var(--ink-soft); }
+  td.t { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; font-size: 15.5px; }
+  td.nm { color: var(--ink); font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  tr.night td.t { color: var(--amber); }
+
+  /* ---------- classes ---------- */
+
+  .cls { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 0; border-top: 1px solid var(--rule); }
+  .cl { padding: 20px 0; border-bottom: 1px solid var(--rule-soft); }
+  @media (min-width: 700px) {
+    .cl { border-bottom: 0; padding: 20px 24px 20px 0; }
+    .cl + .cl { border-left: 1px solid var(--rule-soft); padding-left: 24px; }
+  }
+  .cl h3 { font-family: var(--display); font-size: 17px; letter-spacing: 0.03em; margin: 0 0 3px; }
+  .cl .pr { font-family: var(--mono); font-size: 12px; color: var(--signal); display: block; margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+  .cl p { margin: 0; font-size: 15px; color: var(--ink-soft); }
+
+  /* ---------- how to book ---------- */
+
+  .steps { counter-reset: s; border-top: 2px solid var(--ink); }
+  .step {
+    display: grid; grid-template-columns: 34px 1fr; gap: 4px 16px;
+    padding: 18px 0; border-bottom: 1px solid var(--rule-soft);
+  }
+  .step::before {
+    counter-increment: s; content: counter(s);
+    font-family: var(--mono); font-size: 13px; color: var(--signal);
+    grid-row: 1 / span 2; padding-top: 2px; font-variant-numeric: tabular-nums;
+  }
+  .step h3 { font-family: var(--display); font-size: 17px; letter-spacing: 0.02em; margin: 0; }
+  .step p { margin: 4px 0 0; color: var(--ink-soft); font-size: 15.5px; max-width: 64ch; }
+  .step p strong { color: var(--ink); font-weight: 600; }
+  .step p + p { margin-top: 8px; }
+  code { font-family: var(--mono); font-size: 0.87em; background: var(--sunken); padding: 1px 5px; word-break: break-all; }
+
+  .note {
+    margin-top: 24px; padding: 18px 20px; background: var(--surface);
+    border-left: 3px solid var(--signal); color: var(--ink-soft); font-size: 15.5px; max-width: 68ch;
+  }
+  .note strong { color: var(--ink); }
+
+  footer {
+    margin-top: 62px; padding-top: 19px; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); line-height: 1.85;
+  }
+  a { color: var(--signal); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="kicker">Zusatz zu Plan A, Route B und Plan C</span>
+    <h1>Mit dem Zug<br>über Java</h1>
+    <p class="standfirst">Java hat das beste Bahnnetz Südostasiens: pünktlich, klimatisiert, spottbillig und mitten in die Städte statt an einen Flughafen vierzig Kilometer draußen. Auf Bali und Lombok gibt es dagegen keinen einzigen Meter Schiene — Zugfahren heißt hier automatisch: der Java-Teil eurer Reise.</p>
+  </header>
+
+  <section>
+    <span class="sec-k">Wo es sich lohnt</span>
+    <h2>Drei Strecken, drei Urteile</h2>
+    <p class="lede">Nicht jede Etappe wird durch den Zug besser. Hier steht, welche schon.</p>
+
+    <div class="legs">
+
+      <div class="leg">
+        <div class="leg-head">
+          <h3 class="leg-name">Jakarta → Yogyakarta</h3>
+          <span class="tag yes">Nehmen</span>
+          <span class="tag no">4. September</span>
+        </div>
+        <p>Die eine Strecke, die in <strong>allen drei Plänen</strong> vorkommt. Der Zug fährt ab Gambir mitten in Jakarta und hält in Yogyakarta am Bahnhof Tugu — <strong>zehn Gehminuten von der Malioboro.</strong> Der Flug landet dagegen am YIA, vierzig Kilometer außerhalb, plus Zubringerzug in die Stadt.</p>
+        <p>Ehrlich gerechnet: Flug rund viereinhalb Stunden von Tür zu Tür, Zug sieben bis acht. Ihr zahlt also etwa drei Stunden — und bekommt dafür Reisfelder, Vulkane am Horizont, Beinfreiheit, eine Steckdose und einen Preis, der bei ein paar Euro anfängt.</p>
+      </div>
+
+      <div class="leg">
+        <div class="leg-head">
+          <h3 class="leg-name">Yogyakarta → Surabaya</h3>
+          <span class="tag yes">Nehmen</span>
+          <span class="tag no">nur Route B</span>
+        </div>
+        <p>308 Kilometer in drei bis vier Stunden. Hier ist der Zug schlicht <strong>schneller als der Flug</strong>, sobald man Anfahrt, Check-in und Gepäckband mitrechnet — und er kostet in der Eksekutif-Klasse rund siebzehn Euro.</p>
+        <p>In Plan C entfällt diese Etappe: dort holt euch der Van der Tour in Yogyakarta ab und bringt euch bis Bali.</p>
+      </div>
+
+      <div class="leg">
+        <div class="leg-head">
+          <h3 class="leg-name">Surabaya → Banyuwangi</h3>
+          <span class="tag yes">Der Geheimtipp</span>
+        </div>
+        <p>Der Mutiara Timur fährt bis <strong>Ketapang</strong> — und dieser Bahnhof liegt <strong>350 Meter vom Fähranleger nach Bali entfernt, fünf Minuten zu Fuß.</strong> Ihr steigt aus dem Zug, geht einmal über den Vorplatz und seid am Schiff. Fähren fahren rund um die Uhr alle fünfzehn Minuten, Überfahrt 45 Minuten, Ticket etwa sechzig Cent.</p>
+        <p>In Route B fahrt ihr diese Strecke bisher nach dem Bromo-Sonnenaufgang fünf Stunden im Auto. Eine Variante wäre: vom Bromo nach Probolinggo runter — anderthalb Stunden — und dort in denselben Zug steigen. Fragt euren Fahrer, ob das an eurem Tag zeitlich aufgeht.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Fahrpläne</span>
+    <h2>Die Züge, die für euch infrage kommen</h2>
+    <p class="lede">Zeiten Stand August 2026 und ohne Gewähr — die Bahn verschiebt Abfahrten saisonal. Prüft am Buchungstag nach. Amber markiert die Nachtzüge.</p>
+
+    <div class="board">
+      <div class="board-head">
+        <span class="board-route">Jakarta Gambir → Yogyakarta Tugu</span>
+        <span class="board-sub">522 km · 6–8 h · alle ~3 h ein Zug</span>
+      </div>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Zug</th><th>ab</th><th>an</th><th>Klassen</th></tr></thead>
+          <tbody>
+            <tr><td class="nm">Taksaka</td><td class="t">07:45</td><td class="t">13:50</td><td>Eksekutif Luxury &amp; Eksekutif</td></tr>
+            <tr><td class="nm">Fajar Utama</td><td class="t">07:35</td><td class="t">15:10</td><td>Eksekutif &amp; Ekonomi</td></tr>
+            <tr><td class="nm">Argo Dwipangga</td><td class="t">08:50</td><td class="t">14:51</td><td>Eksekutif Luxury &amp; Eksekutif</td></tr>
+            <tr class="night"><td class="nm">letzter Zug</td><td class="t">21:20</td><td class="t">03:25</td><td>erster Zug des Tages: 06:20</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="board-head">
+        <span class="board-route">Surabaya Gubeng → Ketapang</span>
+        <span class="board-sub">~6 h · 350 m zum Fähranleger</span>
+      </div>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Zug</th><th>ab</th><th>an</th><th>Anschluss</th></tr></thead>
+          <tbody>
+            <tr><td class="nm">Mutiara Timur</td><td class="t">09:24</td><td class="t">15:30</td><td>Fähre nach Gilimanuk, alle 15 min</td></tr>
+            <tr class="night"><td class="nm">Nachtzug</td><td class="t">22:50</td><td class="t">04:40</td><td>Ankunft vor Sonnenaufgang</td></tr>
+            <tr class="night"><td class="nm">Nachtzug, später</td><td class="t">23:48</td><td class="t">05:40</td><td>spart eine Hotelnacht</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="board-head">
+        <span class="board-route">Flughafen Soekarno-Hatta → Innenstadt</span>
+        <span class="board-sub">Railink · 55 min · ~4 €</span>
+      </div>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Verbindung</th><th>Takt</th><th>Betrieb</th><th>Preis</th></tr></thead>
+          <tbody>
+            <tr><td class="nm">CGK → BNI City</td><td class="t">alle 30 min</td><td class="t">05:00–23:00</td><td>70.000 IDR</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="note"><strong>Für den 3. September heißt das:</strong> ihr landet um 20:35. Der letzte Zug nach Yogyakarta geht um 21:20 ab Gambir — das schafft ihr nach Immigration, Gepäck und 55 Minuten Flughafenbahn nicht. Also wie geplant eine Nacht am Flughafen, und am Morgen des 4. den Taksaka um 07:45. Ihr seid dann um 13:50 mitten in Yogyakarta.</div>
+  </section>
+
+  <section>
+    <span class="sec-k">Klassen</span>
+    <h2>Was ihr buchen solltet</h2>
+    <p class="lede">Preise für die lange Strecke Jakarta–Yogyakarta, einfache Fahrt pro Person. Auf den kürzeren Strecken entsprechend weniger.</p>
+    <div class="cls">
+      <div class="cl">
+        <h3>Ekonomi</h3>
+        <span class="pr">225.000 IDR · ~13 €</span>
+        <p>Gepolsterte Sitze ohne Lehnenverstellung, meist 2+3 nebeneinander, klimatisiert. Für sechs Stunden grenzwertig, für zwei bis drei völlig in Ordnung.</p>
+      </div>
+      <div class="cl">
+        <h3>Eksekutif</h3>
+        <span class="pr">560.000 IDR · ~32 €</span>
+        <p>2+2 nebeneinander, verstellbare Sitze mit ordentlich Platz, Steckdose. <strong>Das ist die Klasse, die ihr nehmt.</strong> Zweiunddreißig Euro für sechs Stunden quer durch Java ist ein Witz von einem Preis.</p>
+      </div>
+      <div class="cl">
+        <h3>Eksekutif Luxury</h3>
+        <span class="pr">1.200.000 IDR · ~69 €</span>
+        <p>Sitze, die sich fast flach legen lassen, wie Business Class im Flugzeug. Nur sinnvoll, wenn ihr den Nachtzug nehmt und wirklich schlafen wollt.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Buchen</span>
+    <h2>Der Haken, den niemand erwähnt</h2>
+    <p class="lede">Die offizielle App der indonesischen Bahn ist für euch praktisch unbrauchbar. Nicht schlimm — nur muss man es vorher wissen.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div><h3>Nicht die KAI-App nehmen</h3></div>
+        <p><code>Access by KAI</code> ist die offizielle App, aber die Registrierung verlangt eine <strong>indonesische Handynummer</strong>, und ausländische Kreditkarten werden meist abgelehnt. Ihr könnt sie euch sparen.</p>
+      </div>
+      <div class="step">
+        <div><h3>Stattdessen einen Wiederverkäufer</h3></div>
+        <p>Funktionieren mit deutschen Karten: <code>seat61.transport-ticket.com</code> — eine englische Oberfläche direkt auf das Buchungssystem der Bahn —, dazu <code>en.tiket.com/kereta-api</code> und Traveloka. Alle drei zeigen dieselben Züge und Preise.</p>
+      </div>
+      <div class="step">
+        <div><h3>Reisepassnummer bereithalten</h3></div>
+        <p>Als Ausländer bucht ihr mit <strong>Passnummer statt Personalausweis</strong>, und die Namen müssen exakt so geschrieben sein wie im Pass. Legt beide Pässe daneben, bevor ihr anfangt.</p>
+      </div>
+      <div class="step">
+        <div><h3>Früh buchen — und in eine Richtung denken</h3></div>
+        <p>Die Eksekutif-Klasse der beliebten Züge ist an Wochenenden und in Ferienzeiten voll. Für den 4. September gilt: je eher, desto besser, ihr fahrt an einem Freitag.</p>
+      </div>
+      <div class="step">
+        <div><h3>Bordkarte nicht vergessen</h3></div>
+        <p><strong>Mit der Buchungsbestätigung allein kommt ihr nicht in den Zug.</strong> Ihr braucht eine Bordkarte — entweder aus dem Automaten in der Bahnhofshalle oder über den Link in der Bestätigungsmail. Plant dafür am Bahnhof zwanzig Minuten mehr ein.</p>
+      </div>
+    </div>
+
+    <div class="note"><strong>Ohne App geht es auch:</strong> in jedem Indomaret — das sind die Supermärkte an praktisch jeder Ecke — steht ein Terminal, an dem man Zugtickets kauft. Aufschlag rund 7.500 Rupiah, also vierzig Cent. Nützlich, wenn ihr spontan umdisponiert.</div>
+  </section>
+
+  <section>
+    <span class="sec-k">Unterm Strich</span>
+    <h2>Was ich machen würde</h2>
+    <p class="lede">Für den Plan, auf den es hinausläuft.</p>
+    <div class="legs">
+      <div class="leg">
+        <div class="leg-head"><h3 class="leg-name">In Plan C</h3><span class="tag yes">eine Strecke</span></div>
+        <p>Nur Jakarta → Yogyakarta am 4. September, Taksaka 07:45, Eksekutif. Spart euch den Inlandsflug, bringt euch mitten in die Stadt und kostet zu zweit rund <strong>64 Euro</strong> statt gut hundert für zwei Flugtickets. Alles weitere auf Java macht der Van der Tour.</p>
+      </div>
+      <div class="leg">
+        <div class="leg-head"><h3 class="leg-name">In Route B</h3><span class="tag yes">zwei Strecken</span></div>
+        <p>Dieselbe Fahrt am 4. September, dazu am 7. September Yogyakarta → Surabaya statt zu fliegen. Zusammen etwa <strong>98 Euro</strong> zu zweit — gegenüber rund zweihundert für die beiden Inlandsflüge, und ohne zweimal durch einen Flughafen zu müssen.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Zugstrecken auf Java · Stand August 2026 · Fahrpläne saisonal veränderlich, Preise gerundet bei ~17.500 IDR je Euro.<br>
+    Auf Bali und Lombok gibt es keine Eisenbahn.
+      <br><a class="sitenav" href="./index.html">Plan A</a><a class="sitenav" href="./route-b.html">Route B</a><a class="sitenav" href="./plan-c.html">Plan C</a><a class="sitenav" href="./buchungen.html">Buchungsliste</a><a class="sitenav" href="./fuer-zwei.html">Was bleibt</a><a class="sitenav" href="./tierlist.html">Tier List</a>
+  </footer>
+
+</div>
+</body>
+</html>
