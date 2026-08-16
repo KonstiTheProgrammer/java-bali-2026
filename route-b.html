@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <meta name="description" content="Alternativroute: Java-Vulkane, Pemuteran, Amed, fünf Nächte Gili Air mit Tauchschein, Canggu.">
 <title>Route B · Java, Amed, Gili Air, Canggu</title>
 <style>
@@ -272,6 +273,96 @@
     .nights { display: none; }
   }
 
+  /* ---------- map ---------- */
+
+  .mapwrap { border: 1px solid var(--rule); background: var(--surface); }
+  #map {
+    height: clamp(320px, 52vh, 520px);
+    width: 100%;
+    background: var(--sunken);
+  }
+  .map-fallback { padding: 22px 20px; }
+  .map-fallback p { margin: 0; color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
+  .map-fallback b { color: var(--ink); }
+
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 20px;
+    padding: 11px 14px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .lg { display: inline-flex; align-items: center; gap: 7px; }
+  .lg .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--teal); flex: none; }
+  .lg .dot.big { background: var(--magenta); }
+  .lg .ln { width: 20px; height: 0; border-top: 2px solid var(--ink-soft); flex: none; }
+  .lg .ln.sea { border-top-style: dashed; border-top-color: var(--teal); }
+  .gmaps { margin-left: auto; color: var(--magenta); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+  /* Leaflet-Eigenheiten an die Seite anpassen */
+  .leaflet-container { font-family: var(--body); background: var(--sunken); }
+  .leaflet-popup-content-wrapper {
+    background: var(--surface);
+    color: var(--ink);
+    border-radius: 0;
+    box-shadow: 0 2px 14px rgba(0,0,0,.28);
+  }
+  .leaflet-popup-tip { background: var(--surface); }
+  .leaflet-popup-content { margin: 12px 14px; font-size: 14px; line-height: 1.45; }
+  .leaflet-popup-content .pop-n {
+    font-family: var(--display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 17px;
+    letter-spacing: 0.015em;
+    display: block;
+  }
+  .leaflet-popup-content .pop-d {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    display: block;
+    margin: 2px 0 6px;
+  }
+  .leaflet-popup-content .pop-t { color: var(--ink-soft); display: block; }
+  .leaflet-popup-close-button { color: var(--ink-faint) !important; }
+  .leaflet-bar a {
+    background: var(--surface);
+    color: var(--ink);
+    border-bottom-color: var(--rule);
+  }
+  .leaflet-bar a:hover { background: var(--sunken); color: var(--ink); }
+  .leaflet-control-attribution {
+    background: var(--surface) !important;
+    color: var(--ink-faint) !important;
+    font-family: var(--mono);
+    font-size: 9.5px !important;
+  }
+  .leaflet-control-attribution a { color: var(--ink-soft) !important; }
+
+  .pin {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 2px var(--surface), 0 2px 6px rgba(0,0,0,.4);
+  }
+  .pin.big { background: var(--magenta); width: 30px; height: 30px; font-size: 13px; }
+
   /* ---------- skills ---------- */
 
   .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; border-top: 1px solid var(--rule); }
@@ -376,6 +467,26 @@
       <div class="why-item">
         <h3>Canggu statt Uluwatu</h3>
         <p>Uluwatu ist zum Angucken schön und zum Surfen unbrauchbar, wenn man es nicht kann. Canggu hat mit Batu Bolong die geduldigste Anfängerwelle Balis — und im September steht der Wind richtig.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-k">Auf der Karte</span>
+    <h2>1.100 Kilometer nach Osten</h2>
+    <p class="lede">Von Jakarta bis Gili Air, dann einmal zurück nach Süden. Durchgezogen heißt Land, gestrichelt heißt Wasser. Klickt auf einen Punkt für die Daten.</p>
+
+    <div class="mapwrap">
+      <div id="map" role="application" aria-label="Karte der Reiseroute mit acht Stationen"></div>
+      <div class="map-fallback" id="mapFallback" hidden>
+        <p><b>Die Karte lädt hier nicht.</b> Sie braucht Kartenkacheln von einem externen Server — in einer abgeschotteten Vorschau ist das blockiert. Auf der veröffentlichten Seite funktioniert sie.</p>
+      </div>
+      <div class="map-legend">
+        <span class="lg"><i class="dot big"></i>Längerer Aufenthalt</span>
+        <span class="lg"><i class="dot"></i>Kurzstopp</span>
+        <span class="lg"><i class="ln"></i>über Land</span>
+        <span class="lg"><i class="ln sea"></i>per Boot</span>
+        <a class="gmaps" id="gmapsLink" href="#" target="_blank" rel="noopener noreferrer">In Google Maps öffnen &rarr;</a>
       </div>
     </div>
   </section>
@@ -603,5 +714,119 @@
 
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  var STOPS = [
+    { n: 1, name: 'Jakarta',        lat: -6.1256, lng: 106.6559, d: '3.9.',        t: '1 Nacht · nur Flughafenhotel', big: false },
+    { n: 2, name: 'Yogyakarta',     lat: -7.7956, lng: 110.3695, d: '4.–6.9.',     t: '3 Nächte · Borobudur, Prambanan', big: true },
+    { n: 3, name: 'Bromo',          lat: -7.9421, lng: 112.9530, d: '7.9.',        t: '1 Nacht · Quartier in Cemoro Lawang am Calderarand, 2.200 m', big: false },
+    { n: 4, name: 'Ijen',           lat: -8.2192, lng: 114.3691, d: '8.–9.9.',     t: '2 Nächte in Banyuwangi · Aufstieg in der Nacht auf den 10.', big: true },
+    { n: 5, name: 'Pemuteran',      lat: -8.1417, lng: 114.6472, d: '10.9.',       t: '1 Nacht · Erholung, am 11. früh Menjangan', big: false },
+    { n: 6, name: 'Amed',           lat: -8.3389, lng: 115.6592, d: '11.–13.9.',   t: '3 Nächte · USAT Liberty in Tulamben', big: true },
+    { n: 7, name: 'Gili Air',       lat: -8.3620, lng: 116.0840, d: '14.–18.9.',   t: '5 Nächte · Tauchschein und zwei freie Tage', big: true },
+    { n: 8, name: 'Canggu',         lat: -8.6553, lng: 115.1300, d: '19.–20.9.',   t: '2 Nächte · Surfen an der Batu Bolong', big: false }
+  ];
+
+  // Zwischenpunkte, damit die Linie der tatsächlichen Strecke folgt
+  var LEGS = [
+    { sea: false, pts: [[-6.1256,106.6559], [-7.9057,110.0575], [-7.7956,110.3695]] },                 // Flug + Airport-Zug
+    { sea: false, pts: [[-7.7956,110.3695], [-7.3798,112.7871], [-7.9421,112.9530]] },                 // Flug Surabaya + Fahrt
+    { sea: false, pts: [[-7.9421,112.9530], [-7.7300,113.4700], [-8.2192,114.3691]] },                 // Nordküstenstraße
+    { sea: true,  pts: [[-8.2192,114.3691], [-8.1428,114.3925], [-8.1690,114.4350], [-8.1417,114.6472]] }, // Fähre + kurze Fahrt
+    { sea: false, pts: [[-8.1417,114.6472], [-8.1900,115.1000], [-8.3389,115.6592]] },                 // Nordküste nach Amed
+    { sea: true,  pts: [[-8.3389,115.6592], [-8.3620,116.0840]] },                                     // Schnellboot
+    { sea: true,  pts: [[-8.3620,116.0840], [-8.6878,115.2620]] },                                     // Schnellboot nach Sanur
+    { sea: false, pts: [[-8.6878,115.2620], [-8.6553,115.1300]] }                                      // Fahrt nach Canggu
+  ];
+
+  var el = document.getElementById('map');
+  var fb = document.getElementById('mapFallback');
+
+  // Google-Maps-Link geht immer, auch ohne Leaflet
+  var g = document.getElementById('gmapsLink');
+  if (g) {
+    var first = STOPS[0], last = STOPS[STOPS.length - 1];
+    var mid = STOPS.slice(1, -1).map(function (s) { return s.lat + ',' + s.lng; }).join('|');
+    g.href = 'https://www.google.com/maps/dir/?api=1'
+      + '&origin=' + first.lat + ',' + first.lng
+      + '&destination=' + last.lat + ',' + last.lng
+      + '&waypoints=' + encodeURIComponent(mid);
+  }
+
+  if (typeof L === 'undefined' || !el) {
+    if (el) el.hidden = true;
+    if (fb) fb.hidden = false;
+    return;
+  }
+
+  var map = L.map(el, { scrollWheelZoom: false, attributionControl: true });
+
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t === 'dark') return true;
+    if (t === 'light') return false;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  var ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
+  var tiles = null;
+  function setTiles() {
+    if (tiles) map.removeLayer(tiles);
+    tiles = L.tileLayer(
+      'https://{s}.basemaps.cartocdn.com/' + (isDark() ? 'dark_all' : 'light_all') + '/{z}/{x}/{y}{r}.png',
+      { attribution: ATTR, subdomains: 'abcd', maxZoom: 18 }
+    ).addTo(map);
+    tiles.bringToBack();
+  }
+  setTiles();
+
+  LEGS.forEach(function (leg) {
+    L.polyline(leg.pts, {
+      color: leg.sea ? '#3FA9A2' : '#8899A0',
+      weight: leg.sea ? 2.5 : 3,
+      opacity: 0.95,
+      dashArray: leg.sea ? '5,7' : null,
+      lineCap: 'round'
+    }).addTo(map);
+  });
+
+  var group = [];
+  STOPS.forEach(function (s) {
+    var m = L.marker([s.lat, s.lng], {
+      icon: L.divIcon({
+        className: '',
+        html: '<div class="pin' + (s.big ? ' big' : '') + '">' + s.n + '</div>',
+        iconSize: s.big ? [30, 30] : [26, 26],
+        iconAnchor: s.big ? [15, 15] : [13, 13]
+      }),
+      title: s.n + '. ' + s.name,
+      keyboard: true,
+      alt: 'Station ' + s.n + ': ' + s.name
+    }).addTo(map);
+    m.bindPopup(
+      '<span class="pop-n">' + s.name + '</span>' +
+      '<span class="pop-d">' + s.d + '</span>' +
+      '<span class="pop-t">' + s.t + '</span>'
+    );
+    group.push([s.lat, s.lng]);
+  });
+
+  map.fitBounds(L.latLngBounds(group), { padding: [42, 42] });
+
+  // Rad zoomt erst nach Klick — sonst kapert die Karte das Scrollen der Seite
+  map.on('focus', function () { map.scrollWheelZoom.enable(); });
+  map.on('blur',  function () { map.scrollWheelZoom.disable(); });
+  el.addEventListener('click', function () { map.scrollWheelZoom.enable(); });
+
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', setTiles);
+  }
+  new MutationObserver(setTiles).observe(document.documentElement, {
+    attributes: true, attributeFilter: ['data-theme']
+  });
+})();
+</script>
 </body>
 </html>
